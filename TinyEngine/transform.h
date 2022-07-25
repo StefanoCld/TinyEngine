@@ -26,12 +26,17 @@ namespace mgd {
 			return p * scale;
 		}
 
+		//Get the "local" forward vector
+		Vector3 forward() {
+			return rotate.apply(Vector3(0, 0, 1));
+		}
+
 		Transform inverse() const {
 			Transform t;
 			t.scale = (1 / scale);
 			t.rotate = rotate.conjugated();
 			t.translate = t.rotate.apply(-translate * t.scale);
-			// oppure: t.translarte = t.applyToVector( -translate );
+			// alt: t.translarte = t.applyToVector( -translate );
 			return t;
 		}
 
@@ -39,10 +44,8 @@ namespace mgd {
 			scale = (1 / scale);
 			rotate.conjugate();
 			translate = rotate.apply(-translate * scale);
-			// oppure: translate = applyToVector(-translate);
+			// alt: translate = applyToVector(-translate);
 		}
-
-
 	};
 
 	//  first b then a

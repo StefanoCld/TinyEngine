@@ -31,18 +31,6 @@ namespace mgd {
 
         std::vector<GameObj> obj; // a set with GameObj (each with its own transform)
 
-        //std::vector<Sphere> toWorld() const;
-        /*
-        void populate(int n){
-            for (int i=0;i<n;i++){
-                GameObj someoneNew;
-                someoneNew.transform.translate = Vector3::random(14) + Vector3(0,0,15);
-                someoneNew.transform.translate.y = 0;
-                obj.push_back(  someoneNew );
-            }
-        }
-        */
-
         void populate4() {
             GameObj someoneNew;
             someoneNew.transform.translate = Vector3(0, 0, 6);
@@ -112,9 +100,7 @@ namespace mgd {
     }
 
     void rayCasting(const std::vector<Sphere>& sphereVector) {
-        Camera c(2.0, 48, 48);
-
-        //Plane aPlane( Point3(0,-2,0), Versor3(0,1,0) );
+        Camera c(2.0, 44, 44);
 
         std::string screenBuffer; // a string to get ready and print all at once
 
@@ -127,8 +113,6 @@ namespace mgd {
                 for (Sphere s : sphereVector) {
                     rayCast(c.primaryRay(x, y), s, hitPos, hitNorm, distMax);
                 }
-
-                //rayCast( c.primaryRay(x,y)  , aPlane  , hitPos , hitNorm , distMax );
 
                 screenBuffer += lighting(hitNorm);
             }

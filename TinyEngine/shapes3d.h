@@ -5,7 +5,6 @@
 
 namespace mgd {
 
-
 	struct Ray {
 		Point3 p;
 		Versor3 d;
@@ -20,12 +19,11 @@ namespace mgd {
 		Sphere(Point3 _c, Scalar _r) :c(_c), r(_r) {}
 	};
 
-	struct Plane { // POS
+	struct Plane { // POD
 		Versor3 n;
 		Point3 p;
 		Plane(Point3 _p, Versor3 _n) :p(_p), n(_n) {}
 	};
-
 
 	Sphere apply(const Transform& a, const Sphere& s) {
 		return Sphere(
@@ -35,7 +33,6 @@ namespace mgd {
 	}
 
 	bool rayCast(Ray ray, Sphere& sphere, Point3& hitPos, Versor3& hitNorm, float& distMax) {
-		// see exercise on paper...
 		// the hitpos is (ray.p + k * ray.dir)
 		// for some k such that a*k^2 + b*k + c  = 0
 		Scalar a = 1;
@@ -70,7 +67,6 @@ namespace mgd {
 		hitNorm = plane.n;
 		return true;
 	}
-
 
 } // end of namespace
 

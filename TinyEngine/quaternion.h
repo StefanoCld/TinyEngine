@@ -14,10 +14,13 @@ namespace mgd {
 		Scalar re;
 
 		Quaternion(Vector3 _im, Scalar _re) :im(_im), re(_re) { }
+
 		Vector3 apply(Vector3 p) const;
+
 		void conjugate() {
 			im = -im;
 		}
+
 		Quaternion conjugated() const {
 			return Quaternion(-im, re);
 		}
