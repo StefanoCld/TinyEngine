@@ -102,6 +102,8 @@ namespace mgd {
     void rayCasting(const std::vector<Sphere>& sphereVector) {
         Camera c(2.0, 44, 44);
 
+        Disk d = Disk(Vector3(0, -1, 6), Vector3(0, 1, 0), 3);
+
         std::string screenBuffer; // a string to get ready and print all at once
 
         for (int y = 0; y < c.pixelDimY; y++) {
@@ -109,6 +111,8 @@ namespace mgd {
                 Point3 hitPos;
                 Point3 hitNorm;
                 Scalar distMax = 1000.0;
+
+                rayCast(c.primaryRay(x, y), d, hitPos, hitNorm, distMax);
 
                 for (Sphere s : sphereVector) {
                     rayCast(c.primaryRay(x, y), s, hitPos, hitNorm, distMax);

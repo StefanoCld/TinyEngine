@@ -36,7 +36,7 @@ namespace mgd {
 			t.scale = (1 / scale);
 			t.rotate = rotate.conjugated();
 			t.translate = t.rotate.apply(-translate * t.scale);
-			// alt: t.translarte = t.applyToVector( -translate );
+			// alt: t.translate = t.applyToVector( -translate );
 			return t;
 		}
 
