@@ -18,9 +18,6 @@
     <ClInclude Include="camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="matrix3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="quaternion.h">
       <Filter>Header Files</Filter>
     </ClInclude>

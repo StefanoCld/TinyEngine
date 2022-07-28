@@ -140,7 +140,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
-    <ClInclude Include="matrix3.h" />
     <ClInclude Include="quaternion.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="shapes3d.h" />

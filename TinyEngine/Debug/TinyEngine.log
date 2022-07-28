@@ -1,7 +1,7 @@
 ﻿  main.cpp
-C:\Users\Stefano\source\repos\TinyEngine\TinyEngine\vector3.h(88,31): warning C4305: 'initializing': truncation from 'double' to 'mgd::Scalar'
+C:\Users\Stefano\source\repos\TinyEngine\TinyEngine\vector3.h(87,31): warning C4305: 'initializing': truncation from 'double' to 'mgd::Scalar'
 C:\Users\Stefano\source\repos\TinyEngine\TinyEngine\quaternion.h(36,15): warning C4244: 'initializing': conversion from 'double' to 'mgd::Scalar', possible loss of data
 C:\Users\Stefano\source\repos\TinyEngine\TinyEngine\camera.h(21,17): warning C4244: 'initializing': conversion from 'double' to 'mgd::Scalar', possible loss of data
 C:\Users\Stefano\source\repos\TinyEngine\TinyEngine\camera.h(22,17): warning C4244: 'initializing': conversion from 'double' to 'mgd::Scalar', possible loss of data
-C:\Users\Stefano\source\repos\TinyEngine\TinyEngine\scene.h(25,1): warning C4305: 'argument': truncation from 'double' to 'mgd::Scalar'
+C:\Users\Stefano\source\repos\TinyEngine\TinyEngine\scene.h(23,1): warning C4305: 'argument': truncation from 'double' to 'mgd::Scalar'
   TinyEngine.vcxproj -> C:\Users\Stefano\source\repos\TinyEngine\Debug\TinyEngine.exe

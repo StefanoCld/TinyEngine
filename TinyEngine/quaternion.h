@@ -42,7 +42,6 @@ namespace mgd {
 			return Quaternion(Vector3(0, 0, 0), 1);
 		}
 
-
 	};
 
 	inline Quaternion operator * (const Quaternion& a, const Quaternion& b) {
@@ -66,6 +65,5 @@ namespace mgd {
 	inline bool areEquivalent(const Quaternion& a, const Quaternion& b) {
 		return areEqual(a, b) || areEqual(a, -b);
 	}
-
 
 }

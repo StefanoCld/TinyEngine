@@ -18,7 +18,7 @@ namespace mgd {
 
 		Vector3() :x(0), y(0), z(0) {}
 
-		// linear opreations
+		// linear operations
 		Vector3 operator * (Scalar k) const { return Vector3(k * x, k * y, k * z); }
 		void operator *= (Scalar k) { x *= k; y *= k; z *= k; }
 
@@ -34,7 +34,7 @@ namespace mgd {
 		Vector3 operator - () const { return Vector3(-x, -y, -z); }
 		Vector3 operator + () const { return Vector3(+x, +y, +z); }
 
-		/* accesses to individual coordiantes as a vector */
+		/* accesses to individual coordinates as a vector */
 		Scalar operator[] (int i) const {
 			switch (i) {
 			case 0: return x;
@@ -78,7 +78,6 @@ namespace mgd {
 
 	};
 
-
 	// vector scaling is commutative!
 	inline Vector3 operator * (Scalar k, const Vector3& a) {
 		return a * k;
@@ -120,8 +119,3 @@ namespace mgd {
 	typedef Vector3 Versor3;
 
 }; // end of namespace
-
-
-
-
-

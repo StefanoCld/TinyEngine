@@ -26,7 +26,7 @@ namespace mgd {
 			return p * scale;
 		}
 
-		//Get the "local" forward vector
+		// get the "local" forward vector
 		Vector3 forward() {
 			return rotate.apply(Vector3(0, 0, 1));
 		}
