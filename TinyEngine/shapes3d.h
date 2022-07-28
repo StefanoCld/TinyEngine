@@ -1,5 +1,7 @@
 #pragma once
 
+#include "vector3.h"
+#include "transform.h"
 
 namespace mgd {
 
@@ -10,13 +12,13 @@ namespace mgd {
 		Ray(Point3 _p, Vector3 _d) : p(_p), d(_d.normalized()) { }
 		Ray() {}
 	};
-	/*
+
 	struct Sphere { // POD
 		Point3 c;
 		Scalar r;
 		Sphere(Point3 _c, Scalar _r) :c(_c), r(_r) {}
 	};
-	
+
 	struct Plane { // POD
 		Versor3 n;
 		Point3 p;
@@ -29,14 +31,14 @@ namespace mgd {
 		Scalar r;
 		Disk(Point3 _p, Versor3 _n, Scalar _r) :p(_p), n(_n), r(_r) {}
 	};
-	
+
 	Sphere apply(const Transform& a, const Sphere& s) {
 		return Sphere(
 			a.transformPoint(s.c),
 			a.transformScalar(s.r)
 		);
 	}
-	
+
 	Plane apply(const Transform& a, const Plane& p) {
 		return Plane(
 			a.transformPoint(p.p),
@@ -50,6 +52,28 @@ namespace mgd {
 			a.transformVersor(p.n),
 			a.transformScalar(p.r)
 		);
+	}
+
+	bool rayCast(Ray ray, Sphere& sphere, Point3& hitPos, Versor3& hitNorm, float& distMax) {
+		// the hitpos is (ray.p + k * ray.dir)
+		// for some k such that a*k^2 + b*k + c  = 0
+		Scalar a = 1;
+		Scalar b = 2 * dot(ray.d, ray.p - sphere.c);
+		Scalar c = (ray.p - sphere.c).squaredNorm() - sphere.r * sphere.r;
+
+		Scalar delta = b * b - 4 * a * c;
+
+		if (delta < 0) return false; // ray misses the sphere!
+
+		Scalar k = (-b - sqrt(delta)) / (2 * a);
+		if (k < 0) return false;
+		if (k > distMax) return false;
+		distMax = k;
+
+		hitPos = ray.p + k * ray.d;
+		hitNorm = (hitPos - sphere.c).normalized();
+		return true;
+
 	}
 
 	bool rayCast(Ray ray, Plane plane, Point3& hitPos, Versor3& hitNorm, float& distMax) {
@@ -85,6 +109,6 @@ namespace mgd {
 		else
 			return false;
 	}
-	*/
+
 } // end of namespace
 
