@@ -22,6 +22,8 @@ int main() {
 
 	// game object reference
 	Transform* currentTransform = &(s.obj.at(index).transform);
+	// external camera 
+	Transform t = Transform();
 
 	// caching variables
 	char key_press;
@@ -34,12 +36,6 @@ int main() {
 	// movement multipliers
 	const float deltaMov = 0.3f;
 	const float deltaRot = 3.f;
-
-	// current rotation amount (on Y-axis)
-	float dX = 0.f;
-
-	// external camera 
-	Transform t = Transform();
 
 	// first render
 	rayCasting(s.toWorld());
@@ -70,16 +66,14 @@ int main() {
 
 			// a
 			else if (ascii_value == 97) {
-				dX -= deltaRot;
-				currentTransform->rotate = Quaternion::fromAngleAxis(dX, Vector3(0, 1, 0));
+				currentTransform->rotate = currentTransform->rotate * Quaternion::fromAngleAxis(-deltaRot, Vector3(0, 1, 0));
 
 				rayCasting(s.toView(*currentTransform));
 			}
 
 			// d
 			else if (ascii_value == 100) {
-				dX += deltaRot;
-				currentTransform->rotate = Quaternion::fromAngleAxis(dX, Vector3(0, 1, 0));
+				currentTransform->rotate = currentTransform->rotate * Quaternion::fromAngleAxis(deltaRot, Vector3(0, 1, 0));
 
 				rayCasting(s.toView(*currentTransform));
 			}
@@ -87,14 +81,11 @@ int main() {
 			// g - Change to External Camera
 			else if (ascii_value == 103) {
 				isFirstPerson = false;
-				dX = 0.f;
-				rayCasting(s.toView(Transform()));
+				rayCasting(s.toView(t));
 			}
 
 			// n - Select next Game Object
 			else if (ascii_value == 110) {
-				dX = 0.f;
-
 				index++;
 				if (index > (sphereNumber - 1))
 					index = 0;
@@ -128,16 +119,14 @@ int main() {
 
 			// a
 			else if (ascii_value == 97) {
-				dX -= deltaRot;
-				t.rotate = Quaternion::fromAngleAxis(dX, Vector3(0, 1, 0));
+				t.rotate = t.rotate * Quaternion::fromAngleAxis(-deltaRot, Vector3(0, 1, 0));
 
 				rayCasting(s.toView(t));
 			}
 
 			// d
 			else if (ascii_value == 100) {
-				dX += deltaRot;
-				t.rotate = Quaternion::fromAngleAxis(dX, Vector3(0, 1, 0));
+				t.rotate = t.rotate * Quaternion::fromAngleAxis(deltaRot, Vector3(0, 1, 0));
 
 				rayCasting(s.toView(t));
 			}
@@ -145,7 +134,6 @@ int main() {
 			// g - Change to GameObject
 			else if (ascii_value == 103) {
 				isFirstPerson = true;
-				dX = 0.f;
 				rayCasting(s.toView(*currentTransform));
 			}
 		}

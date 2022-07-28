@@ -19,7 +19,8 @@ namespace mgd {
         GameObj() :
             transform(),
             body(Vector3(0, 0, 0), 1),
-            nose(Vector3(1, 0, 0), 0.7)
+			// nose is on the right, otherwise it would cover the camera when in Gameobject's view mode
+			nose(Vector3(1, 0, 0), 0.7)
         {
         }
     };
@@ -31,7 +32,6 @@ namespace mgd {
 
 		Disk floorDisk = Disk(Vector3(0, -1, 6), Vector3(0, 1, 0), 2);
 
-        // use this method to fill the scene with objects
         void populate() {
             GameObj someoneNew;
             someoneNew.transform.translate = Vector3(0, 0, 6);
