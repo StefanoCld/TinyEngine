@@ -46,15 +46,10 @@ namespace mgd {
 			translate = rotate.apply(-translate * scale);
 			// alt: translate = applyToVector(-translate);
 		}
+
 	};
 
 	//  first b then a
-	Transform operator * (const Transform& a, const Transform& b) {
-		Transform t;
-		t.rotate = a.rotate * b.rotate;
-		t.scale = a.scale * b.scale;
-		t.translate = a.transformVector(b.translate) + a.translate;
-		return t;
-	}
+	Transform operator * (const Transform& a, const Transform& b);
 
 }

@@ -4,71 +4,48 @@
 #include <string>
 #include <iostream>
 
-#include "transform.h"
-#include "shapes3d.h"
 #include "camera.h"
+#include "gameobj.h"
+#include "sphere.h"
 
 namespace mgd {
-
-    class GameObj {
-    public:
-        Transform transform;
-
-        Sphere body, nose;
-
-        GameObj() :
-            transform(),
-            body(Vector3(0, 0, 0), 1),
-			// nose is on the right, otherwise it would cover the camera when in Gameobject's view mode
-			nose(Vector3(1, 0, 0), 0.7)
-        {
-        }
-    };
 
     class Scene {
     public:
 
-        std::vector<GameObj> obj; // a set with GameObj (each with its own transform)
+        std::vector<GameObj*> obj; // a set with GameObj (each with its own transform)
 
-		Disk floorDisk = Disk(Vector3(0, -1, 6), Vector3(0, 1, 0), 2);
 
         void populate() {
-            GameObj someoneNew;
-            someoneNew.transform.translate = Vector3(0, 0, 6);
+            Sphere* someoneNew = new Sphere();
+            someoneNew->transform.translate = Vector3(0, 0, 6);
             obj.push_back(someoneNew);
-            GameObj someoneNew2;
-            someoneNew2.transform.translate = Vector3(0, 0, -6);
-            obj.push_back(someoneNew2);
-            GameObj someoneNew3;
-            someoneNew3.transform.translate = Vector3(6, 0, 0);
-            obj.push_back(someoneNew3);
-            GameObj someoneNew4;
-            someoneNew4.transform.translate = Vector3(-6, 0, 0);
-            obj.push_back(someoneNew4);
+			Sphere* someoneNew2 = new Sphere();
+			someoneNew2->transform.translate = Vector3(0, 0, -6);
+			obj.push_back(someoneNew2);
         }
 
         // produces a vector of spheres in world space
-        std::vector<Sphere> toWorld() const {
-            std::vector<Sphere> res;
+        std::vector<GameObj*> toWorld() const {
+            std::vector<GameObj*> res;
             res.clear();
 
-            for (const GameObj& g : obj) {
-                res.push_back(apply(g.transform, g.nose));
-                res.push_back(apply(g.transform, g.body));
+            for (GameObj* g : obj) {
+                res.push_back(g->applyTransform(g->transform));
             }
             return res;
+
         }
 
-        std::vector<Sphere> toView(Transform camera) const {
-            std::vector<Sphere> res;
+        std::vector<GameObj*> toView(Transform camera) const {
+            std::vector<GameObj*> res;
             res.clear();
 
             camera.invert();
 
-            for (const GameObj& g : obj) {
-                res.push_back(apply(camera * g.transform, g.nose));
-                res.push_back(apply(camera * g.transform, g.body));
-            }
+			for (GameObj* g : obj) {
+				res.push_back(g->applyTransform(camera * g->transform));
+			}
 
             return res;
         };
@@ -100,7 +77,7 @@ namespace mgd {
         return intensityToCstr(diffuse);
     }
 
-    void rayCasting(const std::vector<Sphere>& sphereVector) {
+    void rayCasting(const std::vector<GameObj*> sphereVector) {
         Camera c(2.0, 44, 44);
 
         std::string screenBuffer; // a string to get ready and print all at once
@@ -111,8 +88,8 @@ namespace mgd {
                 Point3 hitNorm;
                 Scalar distMax = 1000.0;
 
-                for (Sphere s : sphereVector) {
-                    rayCast(c.primaryRay(x, y), s, hitPos, hitNorm, distMax);
+                for (GameObj* g : sphereVector) {
+                    g->rayCast(c.primaryRay(x, y), hitPos, hitNorm, distMax);
                 }
 
                 screenBuffer += lighting(hitNorm);

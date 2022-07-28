@@ -3,10 +3,6 @@
 #include <conio.h>
 #include <chrono>
 
-#include "vector3.h"
-#include "shapes3d.h"
-#include "camera.h"
-#include "quaternion.h"
 #include "transform.h"
 #include "scene.h"
 
@@ -21,7 +17,7 @@ int main() {
 	unsigned int index = 0;
 
 	// game object reference
-	Transform* currentTransform = &(s.obj.at(index).transform);
+	Transform* currentTransform = nullptr;// &(s.obj.at(index).transform);
 	// external camera 
 	Transform t = Transform();
 
@@ -46,6 +42,7 @@ int main() {
 		////////
 		// Relative Coordinates - Game Object
 		////////
+		/*
 		if (isFirstPerson) {
 			key_press = _getch();
 			ascii_value = key_press;
@@ -90,16 +87,17 @@ int main() {
 				if (index > (sphereNumber - 1))
 					index = 0;
 
-				currentTransform = &(s.obj.at(index).transform);
+				//currentTransform = &(s.obj.at(index).transform);
 
-				rayCasting(s.toView(*currentTransform));
+				//rayCasting(s.toView(*currentTransform));
 			}
 		}
-		
+		*/
+
 		////////
 		// Relative Coordinates - External Camera
 		////////
-		else {
+		//else {
 			key_press = _getch();
 			ascii_value = key_press;
 
@@ -134,9 +132,9 @@ int main() {
 			// g - Change to GameObject
 			else if (ascii_value == 103) {
 				isFirstPerson = true;
-				rayCasting(s.toView(*currentTransform));
+				//rayCasting(s.toView(*currentTransform));
 			}
-		}
+		//}
 	}
 	
 }

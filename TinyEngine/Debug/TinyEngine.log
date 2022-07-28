@@ -3,5 +3,12 @@ C:\Users\Stefano\source\repos\TinyEngine\TinyEngine\vector3.h(87,31): warning C4
 C:\Users\Stefano\source\repos\TinyEngine\TinyEngine\quaternion.h(36,15): warning C4244: 'initializing': conversion from 'double' to 'mgd::Scalar', possible loss of data
 C:\Users\Stefano\source\repos\TinyEngine\TinyEngine\camera.h(21,17): warning C4244: 'initializing': conversion from 'double' to 'mgd::Scalar', possible loss of data
 C:\Users\Stefano\source\repos\TinyEngine\TinyEngine\camera.h(22,17): warning C4244: 'initializing': conversion from 'double' to 'mgd::Scalar', possible loss of data
-C:\Users\Stefano\source\repos\TinyEngine\TinyEngine\scene.h(23,1): warning C4305: 'argument': truncation from 'double' to 'mgd::Scalar'
-  TinyEngine.vcxproj -> C:\Users\Stefano\source\repos\TinyEngine\Debug\TinyEngine.exe
+  sphere.cpp
+C:\Users\Stefano\source\repos\TinyEngine\TinyEngine\vector3.h(87,31): warning C4305: 'initializing': truncation from 'double' to 'mgd::Scalar'
+C:\Users\Stefano\source\repos\TinyEngine\TinyEngine\quaternion.h(36,15): warning C4244: 'initializing': conversion from 'double' to 'mgd::Scalar', possible loss of data
+  transform.cpp
+C:\Users\Stefano\source\repos\TinyEngine\TinyEngine\vector3.h(87,31): warning C4305: 'initializing': truncation from 'double' to 'mgd::Scalar'
+C:\Users\Stefano\source\repos\TinyEngine\TinyEngine\quaternion.h(36,15): warning C4244: 'initializing': conversion from 'double' to 'mgd::Scalar', possible loss of data
+  Generating Code...
+main.obj : error LNK2019: unresolved external symbol "class mgd::Transform __cdecl mgd::operator*(class mgd::Transform const &,class mgd::Transform const &)" (??Dmgd@@YA?AVTransform@0@ABV10@0@Z) referenced in function "public: class std::vector<class mgd::GameObj *,class std::allocator<class mgd::GameObj *> > __thiscall mgd::Scene::toView(class mgd::Transform)const " (?toView@Scene@mgd@@QBE?AV?$vector@PAVGameObj@mgd@@V?$allocator@PAVGameObj@mgd@@@std@@@std@@VTransform@2@@Z)
+C:\Users\Stefano\source\repos\TinyEngine\Debug\TinyEngine.exe : fatal error LNK1120: 1 unresolved externals
