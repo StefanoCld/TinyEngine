@@ -1,54 +1,39 @@
 #pragma once
-
+#include "vector3.h"
 #include "quaternion.h"
 
 namespace mgd {
 
 	class Transform {
 	public:
-		Scalar scale;
+		Transform();
+
+		float scale;
 		Vector3 translate;
 		Quaternion rotate;
 
-		Transform() : scale(1), translate(0, 0, 0), rotate(Quaternion::identity()) {
-		}
-
-		Vector3 transformPoint(const Vector3& p) const {
-			return rotate.apply(p * scale) + translate;
-		}
-		Vector3 transformVersor(const Vector3& p) const {
-			return rotate.apply(p);
-		}
-		Vector3 transformVector(const Vector3& p) const {
-			return rotate.apply(p * scale);
-		}
-		Scalar transformScalar(Scalar p) const {
-			return p * scale;
-		}
+		Vector3 transformPoint(const Vector3& p) const;
+		Vector3 transformVersor(const Vector3& p) const;
+		Vector3 transformVector(const Vector3& p) const;
+		float transformfloat(float p) const;
 
 		// get the "local" forward vector
-		Vector3 forward() {
-			return rotate.apply(Vector3(0, 0, 1));
-		}
+		Vector3 forward();
+		Transform inverse() const;
+		void invert();
 
-		Transform inverse() const {
+		//  first b then a
+		Transform operator * (const Transform& other) {
 			Transform t;
-			t.scale = (1 / scale);
-			t.rotate = rotate.conjugated();
-			t.translate = t.rotate.apply(-translate * t.scale);
-			// alt: t.translate = t.applyToVector( -translate );
+			t.rotate = rotate * other.rotate;
+			t.scale = scale * other.scale;
+			t.translate = this->transformVector(other.translate) + translate;
 			return t;
-		}
-
-		void invert() {
-			scale = (1 / scale);
-			rotate.conjugate();
-			translate = rotate.apply(-translate * scale);
-			// alt: translate = applyToVector(-translate);
 		}
 	};
 
 	//  first b then a
+	/*
 	Transform operator * (const Transform& a, const Transform& b) {
 		Transform t;
 		t.rotate = a.rotate * b.rotate;
@@ -56,5 +41,5 @@ namespace mgd {
 		t.translate = a.transformVector(b.translate) + a.translate;
 		return t;
 	}
-
+	*/
 }

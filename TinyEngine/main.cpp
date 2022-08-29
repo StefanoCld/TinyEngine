@@ -3,16 +3,14 @@
 #include <conio.h>
 #include <chrono>
 
-#include "vector3.h"
-#include "shapes3d.h"
 #include "camera.h"
 #include "quaternion.h"
-#include "transform.h"
 #include "scene.h"
 
 using namespace mgd;
 
 int main() {
+	
 	// scene stuff
 	Scene s;
 	s.populate();

@@ -75,7 +75,7 @@ namespace mgd {
     };
 
     // ascii art: convert an intensity value (0 to 1) into a sequence of two chars
-    const char* intensityToCstr(Scalar intensity) {
+    const char* intensityToCstr(float intensity) {
         switch (int(round(intensity * 8))) {
         case 0: return "  "; // darkest
         case 1: return " '";
@@ -91,10 +91,10 @@ namespace mgd {
         }
     }
 
-    const char* lighting(Versor3 normal) {
-        Versor3 lightDir = Versor3(1, 2, -2).normalized();
+    const char* lighting(Vector3 normal) {
+        Vector3 lightDir = Vector3(1, 2, -2).normalized();
 
-        Scalar diffuse = dot(normal, lightDir);
+        float diffuse = dot(normal, lightDir);
         if (diffuse < 0) diffuse = 0;
 
         return intensityToCstr(diffuse);
@@ -107,9 +107,9 @@ namespace mgd {
 
         for (int y = 0; y < c.pixelDimY; y++) {
             for (int x = 0; x < c.pixelDimX; x++) {
-                Point3 hitPos;
-                Point3 hitNorm;
-                Scalar distMax = 1000.0;
+                Vector3 hitPos;
+                Vector3 hitNorm;
+                float distMax = 1000.0;
 
                 for (Sphere s : sphereVector) {
                     rayCast(c.primaryRay(x, y), s, hitPos, hitNorm, distMax);

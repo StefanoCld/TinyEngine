@@ -5,25 +5,19 @@
 
 namespace mgd {
 
-	typedef float Scalar;
-
-	inline Scalar randomBetween(Scalar min, Scalar max) {
-		return  min + (std::rand() % 1001) / Scalar(1000) * (max - min);
-	}
-
 	struct Vector3 {
-		Scalar x, y, z;
+		float x, y, z;
 
 		Vector3(float _x, float _y, float _z) :x(_x), y(_y), z(_z) {}
 
 		Vector3() :x(0), y(0), z(0) {}
 
 		// linear operations
-		Vector3 operator * (Scalar k) const { return Vector3(k * x, k * y, k * z); }
-		void operator *= (Scalar k) { x *= k; y *= k; z *= k; }
+		Vector3 operator * (float k) const { return Vector3(k * x, k * y, k * z); }
+		void operator *= (float k) { x *= k; y *= k; z *= k; }
 
-		Vector3 operator / (Scalar k) const { return Vector3(x / k, y / k, z / k); }
-		void operator /= (Scalar k) { x /= k; y /= k; z /= k; }
+		Vector3 operator / (float k) const { return Vector3(x / k, y / k, z / k); }
+		void operator /= (float k) { x /= k; y /= k; z /= k; }
 
 		Vector3 operator + (const Vector3& v) const { return Vector3(x + v.x, y + v.y, z + v.z); }
 		void operator += (const Vector3& v) { x += v.x; y += v.y; z += v.z; }
@@ -35,7 +29,7 @@ namespace mgd {
 		Vector3 operator + () const { return Vector3(+x, +y, +z); }
 
 		/* accesses to individual coordinates as a vector */
-		Scalar operator[] (int i) const {
+		float operator[] (int i) const {
 			switch (i) {
 			case 0: return x;
 			case 1: return y;
@@ -44,8 +38,8 @@ namespace mgd {
 			}
 		}
 
-		Scalar& operator[] (int i) {
-			static Scalar dummy;
+		float& operator[] (int i) {
+			static float dummy;
 			switch (i) {
 			case 0: return x;
 			case 1: return y;
@@ -58,39 +52,43 @@ namespace mgd {
 			return (x == x) && (y == y) && (z == z);
 		}
 
-		// norm (aka magnitude, length, intensity, Eucliden norm...)
-		Scalar squaredNorm() const { return x * x + y * y + z * z; }
-		Scalar norm() const { return std::sqrt(squaredNorm()); }
-		Vector3 normalized() const {
+		// norm (aka magnitude, length, intensity, Euclidean norm...)
+		inline float squaredNorm() const { return x * x + y * y + z * z; }
+		inline float norm() const { return std::sqrt(squaredNorm()); }
+		inline Vector3 normalized() const {
 			return (*this) / norm();
 		}
-		void normalize() {
+		inline void normalize() {
 			(*this) /= norm();
 		}
 
-		static Vector3 random(Scalar range) {
+		inline float randomBetween(float min, float max) {
+			return  min + (std::rand() % 1001) / float(1000) * (max - min);
+		}
+
+		/*
+		inline static Vector3 random(float range) {
 			return Vector3(
 				randomBetween(-range, +range),
 				randomBetween(-range, +range),
 				randomBetween(-range, +range)
 			);
 		}
-
+		*/
 	};
 
 	// vector scaling is commutative!
-	inline Vector3 operator * (Scalar k, const Vector3& a) {
+	inline Vector3 operator * (float k, const Vector3& a) {
 		return a * k;
 	}
 
+	const float TOLERANCE = 1e-5;
 
-	const Scalar TOLERANCE = 1e-5;
-
-	inline bool areEqual(Scalar a, Scalar b) {
+	inline bool areEqual(float a, float b) {
 		return std::abs(a - b) < TOLERANCE;
 	}
 
-	inline bool isZero(Scalar a) {
+	inline bool isZero(float a) {
 		return std::abs(a) < TOLERANCE;
 	}
 
@@ -102,8 +100,7 @@ namespace mgd {
 		return isZero(a.x) && isZero(a.y) && isZero(a.z);
 	}
 
-
-	inline Scalar dot(const Vector3& a, const Vector3& b) {
+	inline float dot(const Vector3& a, const Vector3& b) {
 		return a.x * b.x + a.y * b.y + a.z * b.z;
 	}
 
@@ -114,8 +111,5 @@ namespace mgd {
 			a.x * b.y - a.y * b.x
 		);
 	}
-
-	typedef Vector3 Point3;
-	typedef Vector3 Versor3;
 
 }; // end of namespace
