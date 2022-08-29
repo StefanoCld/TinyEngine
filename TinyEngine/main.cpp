@@ -19,7 +19,7 @@ int main() {
 	unsigned int index = 0;
 
 	// game object reference
-	Transform* currentTransform = &(s.obj.at(index).transform);
+	//Transform* currentTransform = &(s.obj.at(index).transform);
 	// external camera 
 	Transform t = Transform();
 
@@ -44,6 +44,7 @@ int main() {
 		////////
 		// Relative Coordinates - Game Object
 		////////
+		/*
 		if (isFirstPerson) {
 			key_press = _getch();
 			ascii_value = key_press;
@@ -93,11 +94,11 @@ int main() {
 				rayCasting(s.toView(*currentTransform));
 			}
 		}
-		
+		*/
 		////////
 		// Relative Coordinates - External Camera
 		////////
-		else {
+		//else {
 			key_press = _getch();
 			ascii_value = key_press;
 
@@ -105,36 +106,70 @@ int main() {
 			if (ascii_value == 119) {
 				t.translate += t.forward() * deltaMov;
 
-				rayCasting(s.toView(t));
+				//prevents memory leak
+				std::vector<Entity*> tempVec;
+				tempVec.clear();
+				tempVec = s.toView(t);
+
+				rayCasting(tempVec);
+
+				for (Entity* e : tempVec)
+					delete e;
 			}
 
 			// s
 			else if (ascii_value == 115) {
 				t.translate -= t.forward() * deltaMov;
 
-				rayCasting(s.toView(t));
+				//prevents memory leak
+				std::vector<Entity*> tempVec;
+				tempVec.clear();
+				tempVec = s.toView(t);
+
+				rayCasting(tempVec);
+
+				for (Entity* e : tempVec)
+					delete e;
 			}
 
 			// a
 			else if (ascii_value == 97) {
 				t.rotate = t.rotate * Quaternion::fromAngleAxis(-deltaRot, Vector3(0, 1, 0));
 
-				rayCasting(s.toView(t));
+				//prevents memory leak
+				std::vector<Entity*> tempVec;
+				tempVec.clear();
+				tempVec = s.toView(t);
+
+				rayCasting(tempVec);
+
+				for (Entity* e : tempVec)
+					delete e;
 			}
 
 			// d
 			else if (ascii_value == 100) {
 				t.rotate = t.rotate * Quaternion::fromAngleAxis(deltaRot, Vector3(0, 1, 0));
 
-				rayCasting(s.toView(t));
+				//prevents memory leak
+				std::vector<Entity*> tempVec;
+				tempVec.clear();
+				tempVec = s.toView(t);
+
+				rayCasting(tempVec);
+
+				for (Entity* e : tempVec)
+					delete e;
 			}
 
 			// g - Change to GameObject
+			/*
 			else if (ascii_value == 103) {
 				isFirstPerson = true;
 				rayCasting(s.toView(*currentTransform));
 			}
-		}
+			*/
+		//}
 	}
 	
 }

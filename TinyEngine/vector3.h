@@ -65,16 +65,16 @@ namespace mgd {
 		inline float randomBetween(float min, float max) {
 			return  min + (std::rand() % 1001) / float(1000) * (max - min);
 		}
-
-		/*
+		
 		inline static Vector3 random(float range) {
+			Vector3 v;
 			return Vector3(
-				randomBetween(-range, +range),
-				randomBetween(-range, +range),
-				randomBetween(-range, +range)
+				v.randomBetween(-range, +range),
+				v.randomBetween(-range, +range),
+				v.randomBetween(-range, +range)
 			);
 		}
-		*/
+		
 	};
 
 	// vector scaling is commutative!

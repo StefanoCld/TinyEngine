@@ -4,8 +4,8 @@ using namespace mgd;
 
 Transform::Transform(){
 	scale = 1; 
-	mgd::Transform::translate = mgd::Vector3(0,0,0);
-	mgd::Transform::rotate = mgd::Quaternion::identity();
+	Transform::translate = Vector3(0,0,0);
+	Transform::rotate = Quaternion::identity();
 }
 
 Vector3 Transform::transformPoint(const Vector3& p) const {
