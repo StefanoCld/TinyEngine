@@ -8,12 +8,11 @@ namespace mgd {
 
 	public:
 		SphereEntity();
-
-		SphereEntity(float _r);
+		SphereEntity(float r);
+		SphereEntity(Transform t, float r);
 
 		bool rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax) override;
 
 		SphereEntity* apply(const Transform& a) override;
-
 	};
 }

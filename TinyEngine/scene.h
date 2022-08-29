@@ -13,43 +13,12 @@
 
 namespace mgd {
 
-    class GameObj {
-    public:
-        Transform transform;
-
-        Sphere body, nose;
-
-        GameObj() :
-            transform(),
-            body(Vector3(0, 0, 0), 1),
-			// nose is on the right, otherwise it would cover the camera when in Gameobject's view mode
-			nose(Vector3(1, 0, 0), 0.7)
-        {
-        }
-    };
-
     class Scene {
     public:
 
-		std::vector<Entity*> obj; // a set with GameObj (each with its own transform)
-
-		//Disk floorDisk = Disk(Vector3(0, -1, 6), Vector3(0, 1, 0), 2);
+		std::vector<Entity*> obj;
 
         void populate() {
-            /*
-            GameObj someoneNew;
-            someoneNew.transform.translate = Vector3(0, 0, 6);
-            obj.push_back(someoneNew);
-            GameObj someoneNew2;
-            someoneNew2.transform.translate = Vector3(0, 0, -6);
-            obj.push_back(someoneNew2);
-            GameObj someoneNew3;
-            someoneNew3.transform.translate = Vector3(6, 0, 0);
-            obj.push_back(someoneNew3);
-            GameObj someoneNew4;
-            someoneNew4.transform.translate = Vector3(-6, 0, 0);
-            obj.push_back(someoneNew4);
-            */
 
             Entity* someoneNew = new SphereEntity();
 			obj.push_back(someoneNew);
@@ -67,7 +36,6 @@ namespace mgd {
 			obj.push_back(someoneNew5);
         }
 
-        // produces a vector of spheres in world space
         std::vector<Entity*> toWorld() const {
             std::vector<Entity*> res;
             res.clear();

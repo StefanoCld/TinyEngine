@@ -11,7 +11,11 @@ namespace mgd {
 	public:
 		DiskEntity();
 
-		DiskEntity(float _r);
+		DiskEntity(float r);
+
+		DiskEntity(float r, Vector3 n);
+
+		DiskEntity(float r, Vector3 n, Transform t);
 
 		bool rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax) override;
 

@@ -142,6 +142,7 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="diskEntity.h" />
     <ClInclude Include="entity.h" />
+    <ClInclude Include="planeEntity.h" />
     <ClInclude Include="quaternion.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="shapes3d.h" />
@@ -154,6 +155,7 @@
     <ClCompile Include="diskEntity.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="planeEntity.cpp" />
     <ClCompile Include="quaternion.cpp" />
     <ClCompile Include="shapes3d.cpp" />
     <ClCompile Include="sphereEntity.cpp" />

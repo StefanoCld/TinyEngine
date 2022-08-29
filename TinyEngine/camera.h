@@ -1,8 +1,7 @@
 #pragma once
+#include "shapes3d.h"
 
-namespace mgd {
-	class Ray;
-
+namespace mgd { 
 	class Camera {
 	public:
 		float focal;

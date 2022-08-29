@@ -8,14 +8,13 @@ namespace mgd {
 	public:
 		Transform transform;
 
-		Entity() : transform() {}
-
-		Entity(Transform _t);
+		Entity();
+		Entity(Transform t);
 
 		virtual ~Entity() {};
 
 		virtual bool rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax) {
-			return true;
+			return false;
 		};
 
 		virtual Entity* apply(const Transform& a) {

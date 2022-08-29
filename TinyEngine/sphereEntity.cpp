@@ -2,16 +2,19 @@
 
 namespace mgd {
 
-	SphereEntity::SphereEntity()
+	SphereEntity::SphereEntity() : Entity()
 	{
-		Entity();
 		radius = 1;
 	}
 
-	SphereEntity::SphereEntity(float _r)
+	SphereEntity::SphereEntity(float r) : Entity()
 	{
-		Entity();
-		radius = _r;
+		radius = r;
+	}
+	
+	SphereEntity::SphereEntity(Transform t, float r) : Entity(t)
+	{
+		radius = r;
 	}
 
 	bool SphereEntity::rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax)
@@ -45,6 +48,4 @@ namespace mgd {
 
 		return s;
 	}
-
 }
-

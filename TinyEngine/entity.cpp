@@ -2,9 +2,14 @@
 
 namespace mgd {
 
-	Entity::Entity(Transform _t)
+	Entity::Entity()
 	{
-		transform = _t;
+		transform = Transform();
+	}
+
+	Entity::Entity(Transform t)
+	{
+		transform = t;
 	}
 }
 
