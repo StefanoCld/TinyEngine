@@ -27,6 +27,7 @@ namespace mgd {
 	}
 
 	bool DiskEntity::rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax) {
+
 		float dn = dot(ray.d, n);
 		if (dn == 0) return false;
 

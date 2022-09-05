@@ -9,6 +9,11 @@
 
 using namespace mgd;
 
+namespace 
+{
+	void Render();
+}
+
 int main() {
 	
 	// scene stuff
@@ -31,7 +36,7 @@ int main() {
 
 	// movement multipliers
 	const float deltaMov = 0.3f;
-	const float deltaRot = 3.f;
+	const float deltaRot = 10.f;
 
 	// first render
 	rayCasting(s.toWorld());
@@ -214,4 +219,18 @@ int main() {
 			}
 		}
 	}
+}
+
+//Use it
+void Render(const Scene& s, const Transform* const currentTransform)
+{
+	std::vector<Entity*> tempVec;
+	tempVec.clear();
+
+	tempVec = s.toView(*currentTransform);
+
+	rayCasting(tempVec);
+
+	for (Entity* e : tempVec)
+		delete e;
 }
