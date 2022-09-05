@@ -19,6 +19,9 @@ namespace mgd {
 
 		// get the "local" forward vector
 		Vector3 forward();
+		// get the "local" right vector
+		Vector3 right();
+
 		Transform inverse() const;
 		void invert();
 

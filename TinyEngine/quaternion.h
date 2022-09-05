@@ -39,7 +39,6 @@ namespace mgd {
 	inline Vector3 Quaternion::apply(Vector3 p) const {
 		Quaternion q = fromVector3(p);
 		q = (*this) * q * this->conjugated();
-		//assert(areEqual(q.re, 0));
 		return q.im;
 	}
 

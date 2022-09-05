@@ -6,6 +6,11 @@ namespace mgd {
 
 	PlaneEntity::PlaneEntity(Transform t) : Entity(t){}
 
+	PlaneEntity::PlaneEntity(Transform t, Vector3 _n) : Entity(t) 
+	{
+		n = _n;
+	}
+
 	bool PlaneEntity::rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax)
 	{
 		float dn = dot(ray.d, n);
@@ -26,6 +31,7 @@ namespace mgd {
 		PlaneEntity* p = new PlaneEntity();
 
 		p->transform.translate = a.transformPoint(this->transform.translate);
+		p->n = a.transformVersor(this->n);
 
 		return p;
 	}

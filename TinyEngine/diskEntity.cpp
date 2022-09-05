@@ -14,16 +14,16 @@ namespace mgd {
 		n = Vector3(0, 1, 0);
 	}
 
-	DiskEntity::DiskEntity(float r, Vector3 n) : Entity()
+	DiskEntity::DiskEntity(float _r, Vector3 _n) : Entity()
 	{
-		radius = r;
-		n = n;
+		radius = _r;
+		n = _n;
 	}
 
-	DiskEntity::DiskEntity(float r, Vector3 n, Transform t) : Entity(t)
+	DiskEntity::DiskEntity(float _r, Vector3 _n, Transform t) : Entity(t)
 	{
-		radius = r;
-		n = n;
+		radius = _r;
+		n = _n;
 	}
 
 	bool DiskEntity::rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax) {
@@ -52,7 +52,7 @@ namespace mgd {
 
 		d->transform.translate = a.transformPoint(this->transform.translate);
 		d->radius = a.transformfloat(this->radius);
-		d->n = a.transformVector(this->n);
+		d->n = a.transformVersor(this->n);
 
 		return d;
 	}

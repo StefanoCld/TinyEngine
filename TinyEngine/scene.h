@@ -20,12 +20,25 @@ namespace mgd {
 
         void populate() {
 
-            Entity* someoneNew = new SphereEntity();
+			Entity* someoneNew = new SphereEntity();
+			someoneNew->transform.translate = Vector3(4, 0, 4);
 			obj.push_back(someoneNew);
 
 			Entity* someoneNew2 = new SphereEntity();
-            someoneNew2->transform.translate = Vector3(0, 0, 7);
+            someoneNew2->transform.translate = Vector3(-4, 0, 4);
 			obj.push_back(someoneNew2);
+
+			Entity* someoneNew3 = new SphereEntity();
+            someoneNew3->transform.translate = Vector3(4, 0, -4);
+			obj.push_back(someoneNew3);
+
+			Entity* someoneNew4 = new SphereEntity();
+            someoneNew4->transform.translate = Vector3(-4, 0,-4);
+			obj.push_back(someoneNew4);
+            
+			Entity* someoneNew6 = new DiskEntity(2, Vector3(0, 0,-1));
+			someoneNew6->transform.translate = Vector3(0, 1, 3);
+			obj.push_back(someoneNew6);
 		}
 
         std::vector<Entity*> toWorld() const {
@@ -33,7 +46,7 @@ namespace mgd {
             res.clear();
 
             for (Entity* g : obj) {
-                res.push_back(g->apply(g->transform));
+                res.push_back(g->apply(Transform()));
             }
             return res;
         }
@@ -45,7 +58,7 @@ namespace mgd {
             camera.invert();
 
 			for (Entity* g : obj) {
-                Entity* e = g->apply(camera * g->transform);
+                Entity* e = g->apply(camera);
 				res.push_back(e);
 			}
 
@@ -98,15 +111,6 @@ namespace mgd {
             screenBuffer += "\n";
         }
         std::cout << screenBuffer;
-
-        int i = 0;
-		for (Entity* s : entityVector) {
-            std::cout << "-----Post transformation[" << i << "]-----" << std::endl;
-            i++;
-			std::cout << s->transform.translate.x << std::endl;
-			std::cout << s->transform.translate.y << std::endl;
-			std::cout << s->transform.translate.z << std::endl;
-		}
     }
 }
 // end of namespace mgd

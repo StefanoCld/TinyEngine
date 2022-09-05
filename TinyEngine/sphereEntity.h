@@ -9,7 +9,7 @@ namespace mgd {
 	public:
 		SphereEntity();
 		SphereEntity(float r);
-		SphereEntity(Transform t, float r);
+		SphereEntity(float r, Transform t);
 
 		bool rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax) override;
 

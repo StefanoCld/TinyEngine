@@ -12,7 +12,7 @@ namespace mgd {
 		radius = r;
 	}
 	
-	SphereEntity::SphereEntity(Transform t, float r) : Entity(t)
+	SphereEntity::SphereEntity(float r, Transform t) : Entity(t)
 	{
 		radius = r;
 	}
@@ -42,9 +42,9 @@ namespace mgd {
 	SphereEntity* SphereEntity::apply(const Transform& a)
 	{
 		SphereEntity* s = new SphereEntity();
-		Vector3 v = this->transform.translate;
-		Vector3 vt = a.transformPoint(v);
-		s->transform.translate = a.translate;
+
+		s->transform.translate = a.transformPoint(this->transform.translate);
+		s->radius = a.transformfloat(this->radius);
 
 		return s;
 	}

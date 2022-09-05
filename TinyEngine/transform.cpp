@@ -26,6 +26,11 @@ Vector3 Transform::forward() {
 	return rotate.apply(Vector3(0, 0, 1));
 }
 
+Vector3 Transform::right() {
+	// get the "local" right vector
+	return rotate.apply(Vector3(1, 0, 0));
+}
+
 Transform Transform::inverse() const {
 	Transform t;
 	t.scale = (1 / scale);

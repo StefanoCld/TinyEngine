@@ -34,22 +34,13 @@ int main() {
 	const float deltaRot = 3.f;
 
 	// first render
-	//rayCasting(s.toWorld());
+	rayCasting(s.toWorld());
 
-	
 	while (1)
 	{
 		////////
-		// Relative Coordinates - Game Object
+		///Relative Coordinates - Game Object
 		////////
-		int i = 0;
-		for (Entity* a : s.obj) {
-			std::cout << "-----Pre transformation[" << i << "]-----" << std::endl;
-			i++;
-			std::cout << a->transform.translate.x << std::endl;
-			std::cout << a->transform.translate.y << std::endl;
-			std::cout << a->transform.translate.z << std::endl;
-		}
 
 		if (isFirstPerson) {
 			key_press = _getch();
@@ -57,9 +48,9 @@ int main() {
 
 			// w - Forward
 			if (ascii_value == 119) {
+				//wasd movement
 				currentTransform->translate += currentTransform->forward() * deltaMov;
 
-				//rayCasting(s.toView(*currentTransform));
 				// 
 				//prevents memory leak
 				std::vector<Entity*> tempVec;
@@ -75,9 +66,9 @@ int main() {
 			
 			// s - Backward
 			else if (ascii_value == 115) {
+				//wasd movement
 				currentTransform->translate -= currentTransform->forward() * deltaMov;
 
-				//rayCasting(s.toView(*currentTransform));
 				// 
 				//prevents memory leak
 				std::vector<Entity*> tempVec;
@@ -92,9 +83,12 @@ int main() {
 
 			// a
 			else if (ascii_value == 97) {
+				//rotating
 				currentTransform->rotate = currentTransform->rotate * Quaternion::fromAngleAxis(-deltaRot, Vector3(0, 1, 0));
 
-				//rayCasting(s.toView(*currentTransform));
+				//wasd movement
+				//currentTransform->translate -= currentTransform->right() * deltaMov;
+
 				// 
 				//prevents memory leak
 				std::vector<Entity*> tempVec;
@@ -109,9 +103,12 @@ int main() {
 
 			// d
 			else if (ascii_value == 100) {
+				//rotating
 				currentTransform->rotate = currentTransform->rotate * Quaternion::fromAngleAxis(deltaRot, Vector3(0, 1, 0));
-
-				//rayCasting(s.toView(*currentTransform));
+				
+				//wasd movement
+				//currentTransform->translate -= currentTransform->right() * -deltaMov;
+				
 				// 
 				//prevents memory leak
 				std::vector<Entity*> tempVec;
@@ -144,7 +141,7 @@ int main() {
 		}
 		
 		////////
-		// Relative Coordinates - External Camera
+		///Relative Coordinates - External Camera
 		////////
 		else {
 			key_press = _getch();
