@@ -15,28 +15,26 @@ int main() {
 	Scene s;
 	s.populate();
 
-	unsigned int sphereNumber = s.obj.size();
+	unsigned int objNumber = s.obj.size();
 	unsigned int index = 0;
 
 	// game object reference
-	//Transform* currentTransform = &(s.obj.at(index).transform);
+	Transform* currentTransform = &(s.obj.at(index)->transform);
+	
 	// external camera 
 	Transform t = Transform();
 
 	// caching variables
 	char key_press;
-
 	int ascii_value;
-
 	bool isFirstPerson = false;
-	bool isTransitioning = false;
 
 	// movement multipliers
 	const float deltaMov = 0.3f;
 	const float deltaRot = 3.f;
 
 	// first render
-	rayCasting(s.toWorld());
+	//rayCasting(s.toWorld());
 
 	
 	while (1)
@@ -44,7 +42,15 @@ int main() {
 		////////
 		// Relative Coordinates - Game Object
 		////////
-		/*
+		int i = 0;
+		for (Entity* a : s.obj) {
+			std::cout << "-----Pre transformation[" << i << "]-----" << std::endl;
+			i++;
+			std::cout << a->transform.translate.x << std::endl;
+			std::cout << a->transform.translate.y << std::endl;
+			std::cout << a->transform.translate.z << std::endl;
+		}
+
 		if (isFirstPerson) {
 			key_press = _getch();
 			ascii_value = key_press;
@@ -53,30 +59,71 @@ int main() {
 			if (ascii_value == 119) {
 				currentTransform->translate += currentTransform->forward() * deltaMov;
 
-				rayCasting(s.toView(*currentTransform));
-			}
+				//rayCasting(s.toView(*currentTransform));
+				// 
+				//prevents memory leak
+				std::vector<Entity*> tempVec;
+				tempVec.clear();
 
+				tempVec = s.toView(*currentTransform);
+
+				rayCasting(tempVec);
+
+				for (Entity* e : tempVec)
+					delete e;
+			}
+			
 			// s - Backward
 			else if (ascii_value == 115) {
 				currentTransform->translate -= currentTransform->forward() * deltaMov;
 
-				rayCasting(s.toView(*currentTransform));
+				//rayCasting(s.toView(*currentTransform));
+				// 
+				//prevents memory leak
+				std::vector<Entity*> tempVec;
+				tempVec.clear();
+				tempVec = s.toView(*currentTransform);
+
+				rayCasting(tempVec);
+
+				for (Entity* e : tempVec)
+					delete e;
 			}
 
 			// a
 			else if (ascii_value == 97) {
 				currentTransform->rotate = currentTransform->rotate * Quaternion::fromAngleAxis(-deltaRot, Vector3(0, 1, 0));
 
-				rayCasting(s.toView(*currentTransform));
+				//rayCasting(s.toView(*currentTransform));
+				// 
+				//prevents memory leak
+				std::vector<Entity*> tempVec;
+				tempVec.clear();
+				tempVec = s.toView(*currentTransform);
+
+				rayCasting(tempVec);
+
+				for (Entity* e : tempVec)
+					delete e;
 			}
 
 			// d
 			else if (ascii_value == 100) {
 				currentTransform->rotate = currentTransform->rotate * Quaternion::fromAngleAxis(deltaRot, Vector3(0, 1, 0));
 
-				rayCasting(s.toView(*currentTransform));
-			}
+				//rayCasting(s.toView(*currentTransform));
+				// 
+				//prevents memory leak
+				std::vector<Entity*> tempVec;
+				tempVec.clear();
+				tempVec = s.toView(*currentTransform);
 
+				rayCasting(tempVec);
+
+				for (Entity* e : tempVec)
+					delete e;
+			}
+			
 			// g - Change to External Camera
 			else if (ascii_value == 103) {
 				isFirstPerson = false;
@@ -86,19 +133,20 @@ int main() {
 			// n - Select next Game Object
 			else if (ascii_value == 110) {
 				index++;
-				if (index > (sphereNumber - 1))
+				if (index > (objNumber - 1))
 					index = 0;
 
-				currentTransform = &(s.obj.at(index).transform);
+				currentTransform = &(s.obj.at(index)->transform);
 
 				rayCasting(s.toView(*currentTransform));
 			}
+			
 		}
-		*/
+		
 		////////
 		// Relative Coordinates - External Camera
 		////////
-		//else {
+		else {
 			key_press = _getch();
 			ascii_value = key_press;
 
@@ -163,13 +211,10 @@ int main() {
 			}
 
 			// g - Change to GameObject
-			/*
 			else if (ascii_value == 103) {
 				isFirstPerson = true;
 				rayCasting(s.toView(*currentTransform));
 			}
-			*/
-		//}
+		}
 	}
-	
 }

@@ -42,9 +42,9 @@ namespace mgd {
 	SphereEntity* SphereEntity::apply(const Transform& a)
 	{
 		SphereEntity* s = new SphereEntity();
-
-		s->transform.translate = a.transformPoint(this->transform.translate);
-		s->radius = a.transformfloat(this->radius);
+		Vector3 v = this->transform.translate;
+		Vector3 vt = a.transformPoint(v);
+		s->transform.translate = a.translate;
 
 		return s;
 	}

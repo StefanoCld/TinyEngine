@@ -2,6 +2,8 @@
 #include "transform.h"
 #include "vector3.h"
 #include "shapes3d.h"
+#include <iostream>
+using namespace std;
 
 namespace mgd {
 	class Entity {

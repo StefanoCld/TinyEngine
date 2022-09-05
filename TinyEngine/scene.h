@@ -23,18 +23,10 @@ namespace mgd {
             Entity* someoneNew = new SphereEntity();
 			obj.push_back(someoneNew);
 
-			Entity* someoneNew2 = new DiskEntity(3);
-            someoneNew2->transform.translate = Vector3(0, -1, 6);
+			Entity* someoneNew2 = new SphereEntity();
+            someoneNew2->transform.translate = Vector3(0, 0, 7);
 			obj.push_back(someoneNew2);
-
-			Entity* someoneNew3 = new DiskEntity(3);
-            someoneNew3->transform.translate = Vector3(3, -1, 6);
-			obj.push_back(someoneNew3);
-
-			Entity* someoneNew5 = new DiskEntity(3);
-            someoneNew5->transform.translate = Vector3(-3, -1, 6);
-			obj.push_back(someoneNew5);
-        }
+		}
 
         std::vector<Entity*> toWorld() const {
             std::vector<Entity*> res;
@@ -53,7 +45,8 @@ namespace mgd {
             camera.invert();
 
 			for (Entity* g : obj) {
-				res.push_back(g->apply(camera * g->transform));
+                Entity* e = g->apply(camera * g->transform);
+				res.push_back(e);
 			}
 
             return res;
@@ -86,9 +79,8 @@ namespace mgd {
         return intensityToCstr(diffuse);
     }
 
-    void rayCasting(const std::vector<Entity*> sphereVector) {
+    void rayCasting(const std::vector<Entity*> entityVector) {
         Camera c(2.0, 44, 44);
-
         std::string screenBuffer; // a string to get ready and print all at once
 
         for (int y = 0; y < c.pixelDimY; y++) {
@@ -97,7 +89,7 @@ namespace mgd {
                 Vector3 hitNorm;
                 float distMax = 1000.0;
 
-                for (Entity* s : sphereVector) {
+                for (Entity* s : entityVector) {
                     s->rayCast(c.primaryRay(x, y), hitPos, hitNorm, distMax);
                 }
 
@@ -106,6 +98,15 @@ namespace mgd {
             screenBuffer += "\n";
         }
         std::cout << screenBuffer;
+
+        int i = 0;
+		for (Entity* s : entityVector) {
+            std::cout << "-----Post transformation[" << i << "]-----" << std::endl;
+            i++;
+			std::cout << s->transform.translate.x << std::endl;
+			std::cout << s->transform.translate.y << std::endl;
+			std::cout << s->transform.translate.z << std::endl;
+		}
     }
 }
 // end of namespace mgd
