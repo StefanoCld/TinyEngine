@@ -18,9 +18,9 @@ namespace mgd {
 
 		virtual ~Entity() {};
 
-		virtual bool rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax) { return false; };
+		virtual bool rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax) = 0;
 
-		virtual Entity* apply(const Transform& a) { return nullptr; };
+		virtual Entity* apply(const Transform& a) = 0;
 	};
 
 }

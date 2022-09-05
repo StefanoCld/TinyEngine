@@ -36,7 +36,7 @@ int main() {
 
 	// movement multipliers
 	const float deltaMov = 0.3f;
-	const float deltaRot = 10.f;
+	const float deltaRot = 5.f;
 
 	// first render
 	rayCasting(s.toWorld());
