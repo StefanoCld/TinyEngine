@@ -20,7 +20,7 @@ namespace mgd {
 		n = _n;
 	}
 
-	DiskEntity::DiskEntity(float _r, Vector3 _n, Transform t) : Entity(t)
+	DiskEntity::DiskEntity(float _r, Vector3 _n, Transform _t) : Entity(_t)
 	{
 		radius = _r;
 		n = _n;

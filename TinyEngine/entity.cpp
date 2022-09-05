@@ -7,9 +7,9 @@ namespace mgd {
 		transform = Transform();
 	}
 
-	Entity::Entity(Transform t)
+	Entity::Entity(Transform _t)
 	{
-		transform = t;
+		transform = _t;
 	}
 }
 

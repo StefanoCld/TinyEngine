@@ -21,7 +21,7 @@ int main() {
 	// game object reference
 	Transform* currentTransform = &(s.obj.at(index)->transform);
 	
-	// external camera 
+	// external camera cache
 	Transform t = Transform();
 
 	// caching variables

@@ -49,5 +49,4 @@ namespace mgd {
 	inline bool areEquivalent(const Quaternion& a, const Quaternion& b) {
 		return areEqual(a, b) || areEqual(a, -b);
 	}
-
 }

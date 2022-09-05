@@ -10,6 +10,7 @@
 #include "entity.h" 
 #include "sphereEntity.h"
 #include "diskEntity.h"
+#include "planeEntity.h"
 
 namespace mgd {
 
@@ -35,7 +36,7 @@ namespace mgd {
 			Entity* someoneNew4 = new SphereEntity();
             someoneNew4->transform.translate = Vector3(-4, 0,-4);
 			obj.push_back(someoneNew4);
-            
+
 			Entity* someoneNew6 = new DiskEntity(2, Vector3(0, 0,-1));
 			someoneNew6->transform.translate = Vector3(0, 1, 3);
 			obj.push_back(someoneNew6);

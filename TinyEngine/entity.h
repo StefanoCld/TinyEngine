@@ -6,21 +6,21 @@
 using namespace std;
 
 namespace mgd {
+
 	class Entity {
+
 	public:
 		Transform transform;
 
 		Entity();
-		Entity(Transform t);
+
+		Entity(Transform _t);
 
 		virtual ~Entity() {};
 
-		virtual bool rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax) {
-			return false;
-		};
+		virtual bool rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax) { return false; };
 
-		virtual Entity* apply(const Transform& a) {
-			return nullptr;
-		};
+		virtual Entity* apply(const Transform& a) { return nullptr; };
 	};
+
 }

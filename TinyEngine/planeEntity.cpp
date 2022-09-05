@@ -4,9 +4,9 @@ namespace mgd {
 
 	PlaneEntity::PlaneEntity() : Entity(){}
 
-	PlaneEntity::PlaneEntity(Transform t) : Entity(t){}
+	PlaneEntity::PlaneEntity(Transform _t) : Entity(_t){}
 
-	PlaneEntity::PlaneEntity(Transform t, Vector3 _n) : Entity(t) 
+	PlaneEntity::PlaneEntity(Transform _t, Vector3 _n) : Entity(_t) 
 	{
 		n = _n;
 	}

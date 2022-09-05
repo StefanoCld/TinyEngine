@@ -7,14 +7,14 @@ namespace mgd {
 		radius = 1;
 	}
 
-	SphereEntity::SphereEntity(float r) : Entity()
+	SphereEntity::SphereEntity(float _r) : Entity()
 	{
-		radius = r;
+		radius = _r;
 	}
 	
-	SphereEntity::SphereEntity(float r, Transform t) : Entity(t)
+	SphereEntity::SphereEntity(float _r, Transform _t) : Entity(_t)
 	{
-		radius = r;
+		radius = _r;
 	}
 
 	bool SphereEntity::rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax)

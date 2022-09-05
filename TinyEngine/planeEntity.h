@@ -3,14 +3,17 @@
 #include "entity.h"
 
 namespace mgd {
+
 	class PlaneEntity : public Entity {
 
 		Vector3 n;
 
 	public:
 		PlaneEntity();
-		PlaneEntity(Transform t);
-		PlaneEntity(Transform t, Vector3 _n);
+
+		PlaneEntity(Transform _t);
+
+		PlaneEntity(Transform _t, Vector3 _n);
 
 		bool rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax) override;
 
