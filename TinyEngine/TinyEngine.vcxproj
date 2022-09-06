@@ -140,14 +140,28 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
+    <ClInclude Include="diskEntity.h" />
+    <ClInclude Include="entity.h" />
+    <ClInclude Include="planeEntity.h" />
     <ClInclude Include="quaternion.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="shapes3d.h" />
+    <ClInclude Include="sphereEntity.h" />
     <ClInclude Include="transform.h" />
+    <ClInclude Include="utils.h" />
     <ClInclude Include="vector3.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="camera.cpp" />
+    <ClCompile Include="diskEntity.cpp" />
+    <ClCompile Include="entity.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="planeEntity.cpp" />
+    <ClCompile Include="quaternion.cpp" />
+    <ClCompile Include="shapes3d.cpp" />
+    <ClCompile Include="sphereEntity.cpp" />
+    <ClCompile Include="transform.cpp" />
+    <ClCompile Include="vector3.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
