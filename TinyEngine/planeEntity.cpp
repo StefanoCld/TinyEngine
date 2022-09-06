@@ -1,4 +1,5 @@
 #include "planeEntity.h"
+#include "utils.h"
 
 namespace mgd {
 
@@ -35,4 +36,37 @@ namespace mgd {
 
 		return p;
 	}
+
+	void PlaneEntity::Move(Axis axis, float movAmount)
+	{
+		switch (axis)
+		{
+		case Axis::forward:
+			this->transform.translate += this->transform.forward() * movAmount;
+
+		case Axis::up:
+			this->transform.translate += this->transform.up() * movAmount;
+
+		case Axis::right:
+			this->transform.translate += this->transform.right() * movAmount;
+		}
+	}
+
+	void PlaneEntity::Rotate(Axis axis, float rotAmount)
+	{
+		switch (axis)
+		{
+		case Axis::forward:
+			this->transform.rotate = this->transform.rotate * Quaternion::fromAngleAxis(rotAmount, this->transform.forward());
+
+		case Axis::up:
+			this->transform.rotate = this->transform.rotate * Quaternion::fromAngleAxis(rotAmount, this->transform.up());
+
+		case Axis::right:
+			this->transform.rotate = this->transform.rotate * Quaternion::fromAngleAxis(rotAmount, this->transform.right());
+		}
+
+		this->n = this->transform.transformVersor(n);
+	}
+
 }

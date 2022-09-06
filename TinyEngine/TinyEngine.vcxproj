@@ -148,6 +148,7 @@
     <ClInclude Include="shapes3d.h" />
     <ClInclude Include="sphereEntity.h" />
     <ClInclude Include="transform.h" />
+    <ClInclude Include="utils.h" />
     <ClInclude Include="vector3.h" />
   </ItemGroup>
   <ItemGroup>

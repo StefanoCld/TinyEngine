@@ -36,10 +36,11 @@ namespace mgd {
 			Entity* someoneNew4 = new SphereEntity();
             someoneNew4->transform.translate = Vector3(-4, 0,-4);
 			obj.push_back(someoneNew4);
-
+            
 			Entity* someoneNew6 = new DiskEntity(2, Vector3(0,0,-1));
 			someoneNew6->transform.translate = Vector3(0, 1, 5);
 			obj.push_back(someoneNew6);
+            
 		}
 
         std::vector<Entity*> toWorld() const {

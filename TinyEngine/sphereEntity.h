@@ -17,6 +17,11 @@ namespace mgd {
 		bool rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax) override;
 
 		SphereEntity* apply(const Transform& a) override;
+
+		void Move(Axis axis, float movAmount) override;
+
+		void Rotate(Axis axis, float rotAmount) override;
+
 	};
 
 }

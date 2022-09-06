@@ -6,6 +6,7 @@
 #include "camera.h"
 #include "quaternion.h"
 #include "scene.h"
+#include "utils.h"
 
 using namespace mgd;
 
@@ -24,7 +25,7 @@ int main() {
 	unsigned int index = 0;
 
 	// game object reference
-	Transform* currentTransform = &(s.obj.at(index)->transform);
+	Entity* currentEntity = (s.obj.at(index));
 	
 	// external camera cache
 	Transform t = Transform();
@@ -53,15 +54,14 @@ int main() {
 
 			// w - Forward
 			if (ascii_value == 119) {
-				//wasd movement
-				currentTransform->translate += currentTransform->forward() * deltaMov;
+				currentEntity->Move(Axis::forward, deltaMov);
 
-				// 
 				//prevents memory leak
 				std::vector<Entity*> tempVec;
 				tempVec.clear();
 
-				tempVec = s.toView(*currentTransform);
+				//tempVec = s.toView(*currentTransform);
+				tempVec = s.toView(currentEntity->transform);
 
 				rayCasting(tempVec);
 
@@ -71,14 +71,14 @@ int main() {
 			
 			// s - Backward
 			else if (ascii_value == 115) {
-				//wasd movement
-				currentTransform->translate -= currentTransform->forward() * deltaMov;
+				currentEntity->Move(Axis::forward, -deltaMov);
 
-				// 
 				//prevents memory leak
 				std::vector<Entity*> tempVec;
 				tempVec.clear();
-				tempVec = s.toView(*currentTransform);
+
+				//tempVec = s.toView(*currentTransform);
+				tempVec = s.toView(currentEntity->transform);
 
 				rayCasting(tempVec);
 
@@ -88,17 +88,14 @@ int main() {
 
 			// a
 			else if (ascii_value == 97) {
-				//rotating
-				currentTransform->rotate = currentTransform->rotate * Quaternion::fromAngleAxis(-deltaRot, Vector3(0, 1, 0));
+				currentEntity->Rotate(Axis::up, -deltaRot);
 
-				//wasd movement
-				//currentTransform->translate -= currentTransform->right() * deltaMov;
-
-				// 
 				//prevents memory leak
 				std::vector<Entity*> tempVec;
 				tempVec.clear();
-				tempVec = s.toView(*currentTransform);
+
+				//tempVec = s.toView(*currentTransform);
+				tempVec = s.toView(currentEntity->transform);
 
 				rayCasting(tempVec);
 
@@ -108,17 +105,14 @@ int main() {
 
 			// d
 			else if (ascii_value == 100) {
-				//rotating
-				currentTransform->rotate = currentTransform->rotate * Quaternion::fromAngleAxis(deltaRot, Vector3(0, 1, 0));
-				
-				//wasd movement
-				//currentTransform->translate -= currentTransform->right() * -deltaMov;
-				
-				// 
+				currentEntity->Rotate(Axis::up, deltaRot);
+ 
 				//prevents memory leak
 				std::vector<Entity*> tempVec;
 				tempVec.clear();
-				tempVec = s.toView(*currentTransform);
+
+				//tempVec = s.toView(*currentTransform);
+				tempVec = s.toView(currentEntity->transform);
 
 				rayCasting(tempVec);
 
@@ -138,9 +132,9 @@ int main() {
 				if (index > (objNumber - 1))
 					index = 0;
 
-				currentTransform = &(s.obj.at(index)->transform);
+				currentEntity = (s.obj.at(index));
 
-				rayCasting(s.toView(*currentTransform));
+				rayCasting(s.toView(currentEntity->transform));
 			}
 			
 		}
@@ -215,7 +209,8 @@ int main() {
 			// g - Change to GameObject
 			else if (ascii_value == 103) {
 				isFirstPerson = true;
-				rayCasting(s.toView(*currentTransform));
+				//rayCasting(s.toView(*currentTransform));
+				rayCasting(s.toView(currentEntity->transform));
 			}
 		}
 	}
