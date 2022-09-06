@@ -56,12 +56,15 @@ namespace mgd {
 		{
 		case Axis::forward:
 			this->transform.translate += this->transform.forward() * movAmount;
+			break;
 
 		case Axis::up:
 			this->transform.translate += this->transform.up() * movAmount;
+			break;
 
 		case Axis::right:
 			this->transform.translate += this->transform.right() * movAmount;
+			break;
 		}
 	}
 
@@ -71,12 +74,15 @@ namespace mgd {
 		{
 		case Axis::forward:
 			this->transform.rotate = this->transform.rotate * Quaternion::fromAngleAxis(rotAmount, this->transform.forward());
+			break;
 
 		case Axis::up:
 			this->transform.rotate = this->transform.rotate * Quaternion::fromAngleAxis(rotAmount, this->transform.up());
+			break;
 
 		case Axis::right:
 			this->transform.rotate = this->transform.rotate * Quaternion::fromAngleAxis(rotAmount, this->transform.right());
+			break;
 		}
 	}
 

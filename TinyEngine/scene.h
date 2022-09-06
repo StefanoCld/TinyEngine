@@ -20,27 +20,27 @@ namespace mgd {
 		std::vector<Entity*> obj;
 
         void populate() {
-
-			Entity* someoneNew = new SphereEntity();
-			someoneNew->transform.translate = Vector3(4, 0, 4);
-			obj.push_back(someoneNew);
-
-			Entity* someoneNew2 = new SphereEntity();
-            someoneNew2->transform.translate = Vector3(-4, 0, 4);
-			obj.push_back(someoneNew2);
-
-			Entity* someoneNew3 = new SphereEntity();
-            someoneNew3->transform.translate = Vector3(4, 0, -4);
-			obj.push_back(someoneNew3);
-
-			Entity* someoneNew4 = new SphereEntity();
-            someoneNew4->transform.translate = Vector3(-4, 0,-4);
-			obj.push_back(someoneNew4);
             
-			Entity* someoneNew6 = new DiskEntity(2, Vector3(0,0,-1));
-			someoneNew6->transform.translate = Vector3(0, 1, 5);
-			obj.push_back(someoneNew6);
-            
+            for (int j = 0; j < 5; j++) 
+            {
+				Entity* someoneNew = new DiskEntity(2);
+                someoneNew->transform.translate = Vector3(0, -2, 5*j);
+				obj.push_back(someoneNew);
+            }
+
+			for (int j = 0; j < 5; j++)
+			{
+				Entity* someoneNew = new SphereEntity(2);
+				someoneNew->transform.translate = Vector3(-4, 0, 5 * j);
+				obj.push_back(someoneNew);
+			}
+
+			for (int j = 0; j < 5; j++)
+			{
+				Entity* someoneNew = new SphereEntity(2);
+				someoneNew->transform.translate = Vector3(4, 0, 5 * j);
+				obj.push_back(someoneNew);
+			}
 		}
 
         std::vector<Entity*> toWorld() const {

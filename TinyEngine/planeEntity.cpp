@@ -7,11 +7,6 @@ namespace mgd {
 
 	PlaneEntity::PlaneEntity(Transform _t) : Entity(_t){}
 
-	PlaneEntity::PlaneEntity(Transform _t, Vector3 _n) : Entity(_t) 
-	{
-		n = _n;
-	}
-
 	bool PlaneEntity::rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax)
 	{
 		float dn = dot(ray.d, n);
@@ -43,12 +38,15 @@ namespace mgd {
 		{
 		case Axis::forward:
 			this->transform.translate += this->transform.forward() * movAmount;
+			break;
 
 		case Axis::up:
 			this->transform.translate += this->transform.up() * movAmount;
+			break;
 
 		case Axis::right:
 			this->transform.translate += this->transform.right() * movAmount;
+			break;
 		}
 	}
 
@@ -58,15 +56,19 @@ namespace mgd {
 		{
 		case Axis::forward:
 			this->transform.rotate = this->transform.rotate * Quaternion::fromAngleAxis(rotAmount, this->transform.forward());
+			this->n = this->transform.up();
+			break;
 
 		case Axis::up:
 			this->transform.rotate = this->transform.rotate * Quaternion::fromAngleAxis(rotAmount, this->transform.up());
+			this->n = this->transform.up();
+			break;
 
 		case Axis::right:
 			this->transform.rotate = this->transform.rotate * Quaternion::fromAngleAxis(rotAmount, this->transform.right());
+			this->n = this->transform.up();
+			break;
 		}
-
-		this->n = this->transform.transformVersor(n);
 	}
 
 }

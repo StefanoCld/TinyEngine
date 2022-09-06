@@ -15,16 +15,10 @@ namespace mgd {
 		n = Vector3(0, 1, 0);
 	}
 
-	DiskEntity::DiskEntity(float _r, Vector3 _n) : Entity()
+	DiskEntity::DiskEntity(float _r, Transform _t) : Entity(_t)
 	{
 		radius = _r;
-		n = _n;
-	}
-
-	DiskEntity::DiskEntity(float _r, Vector3 _n, Transform _t) : Entity(_t)
-	{
-		radius = _r;
-		n = _n;
+		n = Vector3(0, 1, 0);
 	}
 
 	bool DiskEntity::rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax) {
@@ -65,12 +59,15 @@ namespace mgd {
 		{
 		case Axis::forward:
 			this->transform.translate += this->transform.forward() * movAmount;
+			break;
 
 		case Axis::up:
 			this->transform.translate += this->transform.up() * movAmount;
+			break;
 
 		case Axis::right:
 			this->transform.translate += this->transform.right() * movAmount;
+			break;
 		}
 	}
 
@@ -80,15 +77,20 @@ namespace mgd {
 		{
 		case Axis::forward:
 			this->transform.rotate = this->transform.rotate * Quaternion::fromAngleAxis(rotAmount, this->transform.forward());
+			this->n = this->transform.up();
+			break;
 
 		case Axis::up:
 			this->transform.rotate = this->transform.rotate * Quaternion::fromAngleAxis(rotAmount, this->transform.up());
+			this->n = this->transform.up();
+			break;
 
 		case Axis::right:
 			this->transform.rotate = this->transform.rotate * Quaternion::fromAngleAxis(rotAmount, this->transform.right());
+			this->n = this->transform.up();
+			break;
 		}
 
-		this->n = this->transform.transformVersor(n);
 	}
 
 }
