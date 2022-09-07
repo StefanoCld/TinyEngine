@@ -1,6 +1,7 @@
 #include "entity.h"
 
-namespace mgd {
+namespace mgd 
+{
 
 	Entity::Entity()
 	{
@@ -13,4 +14,3 @@ namespace mgd {
 	}
 
 }
-

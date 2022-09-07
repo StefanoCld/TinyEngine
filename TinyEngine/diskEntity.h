@@ -2,7 +2,8 @@
 #include "vector3.h"
 #include "entity.h"
 
-namespace mgd {
+namespace mgd 
+{
 
 	class DiskEntity : public Entity {
 
@@ -26,4 +27,5 @@ namespace mgd {
 		void Rotate(Axis axis, float rotAmount) override;
 
 	};
+
 }

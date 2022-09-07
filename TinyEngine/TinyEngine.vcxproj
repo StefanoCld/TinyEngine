@@ -161,7 +161,6 @@
     <ClCompile Include="shapes3d.cpp" />
     <ClCompile Include="sphereEntity.cpp" />
     <ClCompile Include="transform.cpp" />
-    <ClCompile Include="vector3.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

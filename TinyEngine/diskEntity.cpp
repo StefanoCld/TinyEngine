@@ -1,7 +1,8 @@
 #include "diskEntity.h"
 #include "utils.h"
 
-namespace mgd {
+namespace mgd 
+{
 
 	DiskEntity::DiskEntity() : Entity()
 	{

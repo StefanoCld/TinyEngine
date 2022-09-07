@@ -1,10 +1,12 @@
 #pragma once
-#include"vector3.h"
-#include"transform.h"
+#include "vector3.h"
 
-namespace mgd {
+namespace mgd 
+{
 
-	struct Ray { // POD
+	struct Ray 
+	{ // POD
+
 		Vector3 p;
 		Vector3 d;
 

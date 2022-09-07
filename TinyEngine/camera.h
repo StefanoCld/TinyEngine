@@ -1,7 +1,9 @@
 #pragma once
-#include "shapes3d.h"
 
-namespace mgd { 
+namespace mgd
+{ 
+	struct Ray;
+
 	class Camera {
 	public:
 		float focal;
@@ -12,4 +14,5 @@ namespace mgd {
 
 		Ray primaryRay(int pixelX, int pixelY);
 	};
+
 }

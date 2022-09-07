@@ -1,7 +1,8 @@
 #include "planeEntity.h"
 #include "utils.h"
 
-namespace mgd {
+namespace mgd 
+{
 
 	PlaneEntity::PlaneEntity() : Entity(){}
 

@@ -10,10 +10,7 @@
 
 using namespace mgd;
 
-namespace 
-{
-	void Render();
-}
+void Render(const Scene& s, const Transform* const currentTransform);
 
 int main() {
 	

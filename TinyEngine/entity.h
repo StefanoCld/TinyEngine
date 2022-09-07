@@ -1,10 +1,10 @@
 #pragma once
 #include "transform.h"
-#include "vector3.h"
 #include "shapes3d.h"
 #include "utils.h"
 
 namespace mgd {
+
 
 	class Entity {
 

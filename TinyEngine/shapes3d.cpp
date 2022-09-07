@@ -1,8 +1,8 @@
 #include "shapes3d.h"
-#include "vector3.h"
-#include "transform.h"
 
-namespace mgd {
+namespace mgd 
+{
+
 	Ray::Ray() {
 
 	}
@@ -11,4 +11,5 @@ namespace mgd {
 		p = _p;
 		d = _d.normalized();
 	}
+
 }
