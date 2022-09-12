@@ -4,9 +4,15 @@
 namespace mgd 
 {
 
-	PlaneEntity::PlaneEntity() : Entity(){}
+	PlaneEntity::PlaneEntity() : Entity()
+	{
+		n = this->transform.up();
+	}
 
-	PlaneEntity::PlaneEntity(Transform _t) : Entity(_t){}
+	PlaneEntity::PlaneEntity(Transform _t) : Entity(_t)
+	{
+		n = this->transform.up();
+	}
 
 	bool PlaneEntity::rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax)
 	{
@@ -70,6 +76,11 @@ namespace mgd
 			this->n = this->transform.up();
 			break;
 		}
+	}
+
+	float PlaneEntity::Lighting(Vector3 hitNorm, Vector3 watcherPos)
+	{
+		return Entity::Lighting(hitNorm, watcherPos);
 	}
 
 }

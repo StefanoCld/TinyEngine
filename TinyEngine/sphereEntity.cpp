@@ -87,4 +87,24 @@ namespace mgd
 		}
 	}
 
+	float SphereEntity::Lighting(Vector3 hitNorm, Vector3 watcherPos)
+	{
+		return Entity::Lighting(hitNorm, watcherPos);
+		
+		///////////Fresnel-effect experiment (to be tuned)///////////
+		/* 
+		Vector3 lightDir = watcherPos - this->transform.translate;
+
+		lightDir.normalize();
+
+		Vector3 diffuseVec = cross(hitNorm, lightDir);
+		float diffuse = diffuseVec.norm();
+		diffuse /= 3;
+		diffuse *= diffuse;
+		if (diffuse < 0) diffuse = 0;
+
+		return diffuse;
+		*/
+	}
+
 }

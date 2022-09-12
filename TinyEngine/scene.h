@@ -20,27 +20,37 @@ namespace mgd {
 		std::vector<Entity*> obj;
 
         void populate() {
-            
+            /*
             for (int j = 0; j < 5; j++) 
             {
 				Entity* someoneNew = new DiskEntity(2);
                 someoneNew->transform.translate = Vector3(0, -2, 5*j);
 				obj.push_back(someoneNew);
             }
-
+            
 			for (int j = 0; j < 5; j++)
 			{
 				Entity* someoneNew = new SphereEntity(2);
 				someoneNew->transform.translate = Vector3(-4, 0, 5 * j);
 				obj.push_back(someoneNew);
 			}
-
+            */
+            /*
 			for (int j = 0; j < 5; j++)
 			{
 				Entity* someoneNew = new SphereEntity(2);
-				someoneNew->transform.translate = Vector3(4, 0, 5 * j);
+				someoneNew->transform.translate = Vector3(5, 0, 5 * j);
 				obj.push_back(someoneNew);
 			}
+            */
+
+			Entity* someoneNew = new SphereEntity(2);
+			someoneNew->transform.translate = Vector3(0, 0, 5);
+			obj.push_back(someoneNew);
+
+			Entity* someoneNew2 = new PlaneEntity();
+			someoneNew2->transform.translate = Vector3(0, -2, 0);
+			obj.push_back(someoneNew2);
 		}
 
         std::vector<Entity*> toWorld() const {
@@ -94,7 +104,7 @@ namespace mgd {
         return intensityToCstr(diffuse);
     }
 
-    void rayCasting(const std::vector<Entity*> entityVector) {
+    void rayCasting(const std::vector<Entity*> entityVector, Vector3 watcherPos) {
         Camera c(2.0, 44, 44);
         std::string screenBuffer; // a string to get ready and print all at once
 
@@ -103,12 +113,15 @@ namespace mgd {
                 Vector3 hitPos;
                 Vector3 hitNorm;
                 float distMax = 1000.0;
+                float diffuse = 0;
 
                 for (Entity* s : entityVector) {
-                    s->rayCast(c.primaryRay(x, y), hitPos, hitNorm, distMax);
+					s->rayCast(c.primaryRay(x, y), hitPos, hitNorm, distMax);
+                    diffuse = (s->Lighting(hitNorm, watcherPos));
                 }
 
-                screenBuffer += lighting(hitNorm);
+				//screenBuffer += lighting(hitNorm);
+				screenBuffer += intensityToCstr(diffuse);
             }
             screenBuffer += "\n";
         }

@@ -37,7 +37,8 @@ int main() {
 	const float deltaRot = 5.f;
 
 	// first render
-	rayCasting(s.toWorld());
+	//rayCasting(s.toWorld());
+	std::cout << "WASD to move" << std::endl;
 
 	while (1)
 	{
@@ -60,7 +61,7 @@ int main() {
 				//tempVec = s.toView(*currentTransform);
 				tempVec = s.toView(currentEntity->transform);
 
-				rayCasting(tempVec);
+				//rayCasting(tempVec);
 
 				for (Entity* e : tempVec)
 					delete e;
@@ -77,7 +78,7 @@ int main() {
 				//tempVec = s.toView(*currentTransform);
 				tempVec = s.toView(currentEntity->transform);
 
-				rayCasting(tempVec);
+				//rayCasting(tempVec);
 
 				for (Entity* e : tempVec)
 					delete e;
@@ -94,7 +95,7 @@ int main() {
 				//tempVec = s.toView(*currentTransform);
 				tempVec = s.toView(currentEntity->transform);
 
-				rayCasting(tempVec);
+				//rayCasting(tempVec);
 
 				for (Entity* e : tempVec)
 					delete e;
@@ -111,7 +112,7 @@ int main() {
 				//tempVec = s.toView(*currentTransform);
 				tempVec = s.toView(currentEntity->transform);
 
-				rayCasting(tempVec);
+				//rayCasting(tempVec);
 
 				for (Entity* e : tempVec)
 					delete e;
@@ -120,7 +121,7 @@ int main() {
 			// g - Change to External Camera
 			else if (ascii_value == 103) {
 				isFirstPerson = false;
-				rayCasting(s.toView(t));
+				//rayCasting(s.toView(t));
 			}
 
 			// n - Select next Game Object
@@ -131,7 +132,7 @@ int main() {
 
 				currentEntity = (s.obj.at(index));
 
-				rayCasting(s.toView(currentEntity->transform));
+				//rayCasting(s.toView(currentEntity->transform));
 			}
 			
 		}
@@ -152,7 +153,8 @@ int main() {
 				tempVec.clear();
 				tempVec = s.toView(t);
 
-				rayCasting(tempVec);
+				//rayCasting(tempVec);
+				rayCasting(tempVec, t.translate);
 
 				for (Entity* e : tempVec)
 					delete e;
@@ -167,7 +169,8 @@ int main() {
 				tempVec.clear();
 				tempVec = s.toView(t);
 
-				rayCasting(tempVec);
+				//rayCasting(tempVec);
+				rayCasting(tempVec, t.translate);
 
 				for (Entity* e : tempVec)
 					delete e;
@@ -182,7 +185,8 @@ int main() {
 				tempVec.clear();
 				tempVec = s.toView(t);
 
-				rayCasting(tempVec);
+				//rayCasting(tempVec);
+				rayCasting(tempVec, t.translate);
 
 				for (Entity* e : tempVec)
 					delete e;
@@ -197,7 +201,8 @@ int main() {
 				tempVec.clear();
 				tempVec = s.toView(t);
 
-				rayCasting(tempVec);
+				//rayCasting(tempVec);
+				rayCasting(tempVec, t.translate);
 
 				for (Entity* e : tempVec)
 					delete e;
@@ -207,7 +212,8 @@ int main() {
 			else if (ascii_value == 103) {
 				isFirstPerson = true;
 				//rayCasting(s.toView(*currentTransform));
-				rayCasting(s.toView(currentEntity->transform));
+				// 
+				//rayCasting(s.toView(currentEntity->transform));
 			}
 		}
 	}
@@ -221,7 +227,7 @@ void Render(const Scene& s, const Transform* const currentTransform)
 
 	tempVec = s.toView(*currentTransform);
 
-	rayCasting(tempVec);
+	//rayCasting(tempVec);
 
 	for (Entity* e : tempVec)
 		delete e;

@@ -26,6 +26,8 @@ namespace mgd
 
 		void Rotate(Axis axis, float rotAmount) override;
 
+		float Lighting(Vector3 hitNorm, Vector3 watcherPos) override;
+
 	};
 
 }

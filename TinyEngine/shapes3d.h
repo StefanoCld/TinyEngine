@@ -6,7 +6,6 @@ namespace mgd
 
 	struct Ray 
 	{ // POD
-
 		Vector3 p;
 		Vector3 d;
 

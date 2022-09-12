@@ -7,19 +7,19 @@ namespace mgd
 	DiskEntity::DiskEntity() : Entity()
 	{
 		radius = 1;
-		n = Vector3(0, 1, 0);
+		n = this->transform.up();
 	}
 
 	DiskEntity::DiskEntity(float _r) : Entity()
 	{
 		radius = _r;
-		n = Vector3(0, 1, 0);
+		n = this->transform.up();
 	}
 
 	DiskEntity::DiskEntity(float _r, Transform _t) : Entity(_t)
 	{
 		radius = _r;
-		n = Vector3(0, 1, 0);
+		n = this->transform.up();
 	}
 
 	bool DiskEntity::rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax) {
@@ -92,6 +92,11 @@ namespace mgd
 			break;
 		}
 
+	}
+
+	float DiskEntity::Lighting(Vector3 hitNorm, Vector3 watcherPos)
+	{
+		return Entity::Lighting(hitNorm, watcherPos);
 	}
 
 }

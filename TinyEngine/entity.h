@@ -24,6 +24,8 @@ namespace mgd {
 		virtual void Move(Axis axis, float movAmount) = 0;
 
 		virtual void Rotate(Axis axis, float rotAmount) = 0;
+		
+		virtual float Lighting(Vector3 hitNorm, Vector3 watcherPos);
 	};
 
 }
