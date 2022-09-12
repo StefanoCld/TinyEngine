@@ -11,6 +11,7 @@
 #include "sphereEntity.h"
 #include "diskEntity.h"
 #include "planeEntity.h"
+#include "triangleEntity.h"
 
 namespace mgd {
 
@@ -43,13 +44,26 @@ namespace mgd {
 				obj.push_back(someoneNew);
 			}
             */
-
+            
 			Entity* someoneNew = new SphereEntity(2);
-			someoneNew->transform.translate = Vector3(0, 0, 5);
+			someoneNew->transform.translate = Vector3(5, 0, 0);
 			obj.push_back(someoneNew);
 
-			Entity* someoneNew2 = new PlaneEntity();
-			someoneNew2->transform.translate = Vector3(0, -2, 0);
+			Entity* someoneNew4 = new SphereEntity(2);
+			someoneNew4->transform.translate = Vector3(-5, 0, 0);
+			obj.push_back(someoneNew4);
+
+			Entity* someoneNew444 = new SphereEntity(2);
+			someoneNew444->transform.translate = Vector3(0, 0, -5);
+			obj.push_back(someoneNew444);
+
+            
+            Transform e;
+            e.translate = Vector3(0, -1, 5);
+            e.rotate = Quaternion::identity();
+            e.scale = 1.f;
+
+			Entity* someoneNew2 = new TriangleEntity(e);
 			obj.push_back(someoneNew2);
 		}
 
@@ -116,8 +130,9 @@ namespace mgd {
                 float diffuse = 0;
 
                 for (Entity* s : entityVector) {
-					s->rayCast(c.primaryRay(x, y), hitPos, hitNorm, distMax);
-                    diffuse = (s->Lighting(hitNorm, watcherPos));
+					bool bHasHit = s->rayCast(c.primaryRay(x, y), hitPos, hitNorm, distMax);
+                    if(bHasHit)
+                        diffuse = (s->Lighting(hitNorm, watcherPos));
                 }
 
 				//screenBuffer += lighting(hitNorm);
