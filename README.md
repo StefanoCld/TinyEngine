@@ -1,9 +1,7 @@
 
-## Made by
+## Tiny Engine
 
-- Stefano Caldana
 
-Originally made for the mobile programming course @ Master Game Dev - University of Verona
 
 ## Preview
 
