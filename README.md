@@ -14,4 +14,4 @@ Once i finished the task, i decided to refactor the code to a more OOP-oriented 
   - Customize the lighting function
 
 ## How to run it
-Just build the solution, and launch the .exe.
+Build the solution, and launch the .exe.
