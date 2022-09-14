@@ -38,7 +38,10 @@ int main() {
 
 	// first render
 	//rayCasting(s.toWorld());
-	std::cout << "WASD to move" << std::endl;
+	std::cout << "W/S to move" << std::endl;
+	std::cout << "A/D to rotate" << std::endl;
+	std::cout << "G to switch to Game Object Mode / External Camera Mode" << std::endl;
+	std::cout << "N to go to the next Game Object" << std::endl;
 
 	while (1)
 	{
@@ -62,6 +65,7 @@ int main() {
 				tempVec = s.toView(currentEntity->transform);
 
 				//rayCasting(tempVec);
+				rayCasting(tempVec, currentEntity->transform.translate);
 
 				for (Entity* e : tempVec)
 					delete e;
@@ -79,6 +83,7 @@ int main() {
 				tempVec = s.toView(currentEntity->transform);
 
 				//rayCasting(tempVec);
+				rayCasting(tempVec, currentEntity->transform.translate);
 
 				for (Entity* e : tempVec)
 					delete e;
@@ -96,6 +101,7 @@ int main() {
 				tempVec = s.toView(currentEntity->transform);
 
 				//rayCasting(tempVec);
+				rayCasting(tempVec, currentEntity->transform.translate);
 
 				for (Entity* e : tempVec)
 					delete e;
@@ -112,7 +118,7 @@ int main() {
 				//tempVec = s.toView(*currentTransform);
 				tempVec = s.toView(currentEntity->transform);
 
-				//rayCasting(tempVec);
+				rayCasting(tempVec, currentEntity->transform.translate);
 
 				for (Entity* e : tempVec)
 					delete e;
@@ -121,7 +127,7 @@ int main() {
 			// g - Change to External Camera
 			else if (ascii_value == 103) {
 				isFirstPerson = false;
-				//rayCasting(s.toView(t));
+				rayCasting(s.toView(t), t.translate);
 			}
 
 			// n - Select next Game Object
@@ -131,8 +137,17 @@ int main() {
 					index = 0;
 
 				currentEntity = (s.obj.at(index));
+				
+				while (!(currentEntity->CanBePossessed())) 
+				{
+					index++;
+					if (index > (objNumber - 1))
+						index = 0;
 
-				//rayCasting(s.toView(currentEntity->transform));
+					currentEntity = (s.obj.at(index));
+				}
+				
+				rayCasting(s.toView(currentEntity->transform), currentEntity->transform.translate);
 			}
 			
 		}
@@ -213,13 +228,24 @@ int main() {
 				isFirstPerson = true;
 				//rayCasting(s.toView(*currentTransform));
 				// 
-				//rayCasting(s.toView(currentEntity->transform));
+				currentEntity = (s.obj.at(index));
+
+				while (!(currentEntity->CanBePossessed()))
+				{
+					index++;
+					if (index > (objNumber - 1))
+						index = 0;
+
+					currentEntity = (s.obj.at(index));
+				}
+
+				rayCasting(s.toView(currentEntity->transform), currentEntity->transform.translate);
 			}
 		}
 	}
 }
 
-//Use it
+//Use it (WIP)
 void Render(const Scene& s, const Transform* const currentTransform)
 {
 	std::vector<Entity*> tempVec;

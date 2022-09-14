@@ -4,7 +4,7 @@
 namespace mgd {
 
 	class PlaneEntity : public Entity {
-		
+
 		Vector3 n;
 
 	public:
@@ -22,5 +22,6 @@ namespace mgd {
 
 		float Lighting(Vector3 hitNorm, Vector3 watcherPos) override;
 
+		bool CanBePossessed() const override { return false; }
 	};
 }

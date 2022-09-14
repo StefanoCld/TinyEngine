@@ -24,6 +24,7 @@ namespace mgd {
 
 		float Lighting(Vector3 hitNorm, Vector3 watcherPos) override;
 
+		bool CanBePossessed() const override { return true; }
 	};
 
 }

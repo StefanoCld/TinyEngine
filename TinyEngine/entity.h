@@ -26,6 +26,8 @@ namespace mgd {
 		virtual void Rotate(Axis axis, float rotAmount) = 0;
 		
 		virtual float Lighting(Vector3 hitNorm, Vector3 watcherPos);
+
+		virtual bool CanBePossessed() const = 0;
 	};
 
 }

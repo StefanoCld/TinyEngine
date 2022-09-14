@@ -111,5 +111,4 @@ namespace mgd
 	{
 		return Entity::Lighting(hitNorm, watcherPos);
 	}
-
 }

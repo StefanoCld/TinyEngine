@@ -21,50 +21,39 @@ namespace mgd {
 		std::vector<Entity*> obj;
 
         void populate() {
-            /*
-            for (int j = 0; j < 5; j++) 
+            //Sandbox function to populate the scene
+
+            
+            for (int j = 0; j < 4; j++) 
             {
 				Entity* someoneNew = new DiskEntity(2);
-                someoneNew->transform.translate = Vector3(0, -2, 5*j);
+                someoneNew->transform.translate = Vector3(0, -2, (9 * j) + 5);
 				obj.push_back(someoneNew);
             }
             
-			for (int j = 0; j < 5; j++)
+			for (int j = 0; j < 4; j++)
 			{
 				Entity* someoneNew = new SphereEntity(2);
-				someoneNew->transform.translate = Vector3(-4, 0, 5 * j);
+				someoneNew->transform.translate = Vector3(-4, 0, (9 * j) + 5);
 				obj.push_back(someoneNew);
 			}
-            */
+            
+            
+			for (int j = 0; j < 4; j++)
+			{
+				Entity* someoneNew = new SphereEntity(2);
+				someoneNew->transform.translate = Vector3(4, 0, (9 * j) + 5);
+				obj.push_back(someoneNew);
+			}
+            
             /*
-			for (int j = 0; j < 5; j++)
-			{
-				Entity* someoneNew = new SphereEntity(2);
-				someoneNew->transform.translate = Vector3(5, 0, 5 * j);
-				obj.push_back(someoneNew);
-			}
-            */
-            
-			Entity* someoneNew = new SphereEntity(2);
-			someoneNew->transform.translate = Vector3(5, 0, 0);
-			obj.push_back(someoneNew);
-
-			Entity* someoneNew4 = new SphereEntity(2);
-			someoneNew4->transform.translate = Vector3(-5, 0, 0);
-			obj.push_back(someoneNew4);
-
-			Entity* someoneNew444 = new SphereEntity(2);
-			someoneNew444->transform.translate = Vector3(0, 0, -5);
-			obj.push_back(someoneNew444);
-
-            
             Transform e;
-            e.translate = Vector3(0, -1, 5);
+            e.translate = Vector3(0, -1, 15);
             e.rotate = Quaternion::identity();
-            e.scale = 1.f;
 
-			Entity* someoneNew2 = new TriangleEntity(e);
-			obj.push_back(someoneNew2);
+			Entity* someoneNew = new TriangleEntity(e);
+			obj.push_back(someoneNew);
+            */
 		}
 
         std::vector<Entity*> toWorld() const {
@@ -119,8 +108,10 @@ namespace mgd {
     }
 
     void rayCasting(const std::vector<Entity*> entityVector, Vector3 watcherPos) {
-        Camera c(2.0, 44, 44);
+        Camera c(2.0, 45, 45);
         std::string screenBuffer; // a string to get ready and print all at once
+
+        //system("cls");
 
         for (int y = 0; y < c.pixelDimY; y++) {
             for (int x = 0; x < c.pixelDimX; x++) {
