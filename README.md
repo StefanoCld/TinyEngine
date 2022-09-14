@@ -12,3 +12,6 @@ Once i finished the task, i decided to refactor the code to a more OOP-oriented 
   - Have an object hierarchy
   - Adding new primitives (Which at the moment are the Disk, and the Triangle (billboard))
   - Customize the lighting function
+
+## How to run it
+Just build the solution, and launch the .exe.
