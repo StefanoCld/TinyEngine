@@ -17,13 +17,11 @@ namespace mgd {
 
     class Scene {
     public:
-
+        // Scene's entities
 		std::vector<Entity*> obj;
 
+		// Sandbox function, used to populate the scene
         void populate() {
-            //Sandbox function to populate the scene
-
-            
             for (int j = 0; j < 4; j++) 
             {
 				Entity* someoneNew = new DiskEntity(2);
@@ -46,14 +44,15 @@ namespace mgd {
 				obj.push_back(someoneNew);
 			}
             
-            /*
+            
+            //Triangle draft (DEBUG)
             Transform e;
-            e.translate = Vector3(0, -1, 15);
+            e.translate = Vector3(0, -1, 40);
             e.rotate = Quaternion::identity();
 
 			Entity* someoneNew = new TriangleEntity(e);
 			obj.push_back(someoneNew);
-            */
+            
 		}
 
         std::vector<Entity*> toWorld() const {
@@ -111,7 +110,7 @@ namespace mgd {
         Camera c(2.0, 45, 45);
         std::string screenBuffer; // a string to get ready and print all at once
 
-        //system("cls");
+        //system("cls"); - not used at the moment, creates an unpleasant glitch
 
         for (int y = 0; y < c.pixelDimY; y++) {
             for (int x = 0; x < c.pixelDimX; x++) {

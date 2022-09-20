@@ -91,7 +91,7 @@ namespace mgd
 	{
 		return Entity::Lighting(hitNorm, watcherPos);
 		
-		///////////Fresnel-effect experiment (to be tuned)///////////
+		// Fresnel-effect experiment (to be tuned)
 		/* 
 		Vector3 lightDir = watcherPos - this->transform.translate;
 

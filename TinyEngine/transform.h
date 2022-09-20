@@ -37,7 +37,7 @@ namespace mgd {
 		}
 	};
 
-	//  first b then a
+	//Variant
 	/*
 	Transform operator * (const Transform& a, const Transform& b) {
 		Transform t;

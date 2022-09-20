@@ -3,10 +3,7 @@
 
 namespace mgd
 {
-	float area(float x1, float y1, float x2, float y2, float x3, float y3)
-	{
-		return std::abs(((x1 * (y2 - y3)) + (x2 * (y3 - y1)) + (x3 * (y1 - y2))) / 2.0f);
-	}
+	
 
 	TriangleEntity::TriangleEntity() : Entity()
 	{
@@ -20,8 +17,7 @@ namespace mgd
 
 	bool TriangleEntity::rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax)
 	{
-		//This tri behaves like a billboard right now
-
+		//This triangle behaves like a billboards
 		Vector3 a = this->transform.translate - 2*(this->transform.right());
 		Vector3 b = this->transform.translate + 2*(this->transform.up());
 		Vector3 c = this->transform.translate + 2*(this->transform.right());
@@ -40,23 +36,19 @@ namespace mgd
 		hitPos = ray.p + k * ray.d;
 		hitNorm = n;
 
+		// Calculating if the point is inside the triangle, using the area-method
 		float A = area(a.x, a.y, b.x, b.y, c.x, c.y);
 
-		/* Calculate area of triangle PBC */
 		float A1 = area(hitPos.x, hitPos.y, b.x, b.y, c.x, c.y);
 
-		/* Calculate area of triangle PAC */
 		float A2 = area(a.x, a.y, hitPos.x, hitPos.y, c.x, c.y);
 
-		/* Calculate area of triangle PAB */
 		float A3 = area(a.x, a.y, b.x, b.y, hitPos.x, hitPos.y);
 
 		float A123 = (A1 + A2 + A3);
 
 		/* Check if sum of A1, A2 and A3 is same as A */
 		return (std::abs(A - A123) < 0.05f);
-
-		//return true;
 	}
 
 	TriangleEntity* TriangleEntity::apply(const Transform& a)
@@ -92,17 +84,14 @@ namespace mgd
 		{
 		case Axis::forward:
 			this->transform.rotate = this->transform.rotate * Quaternion::fromAngleAxis(rotAmount, this->transform.forward());
-			//this->n = this->transform.up();
 			break;
 
 		case Axis::up:
 			this->transform.rotate = this->transform.rotate * Quaternion::fromAngleAxis(rotAmount, this->transform.up());
-			//this->n = this->transform.up();
 			break;
 
 		case Axis::right:
 			this->transform.rotate = this->transform.rotate * Quaternion::fromAngleAxis(rotAmount, this->transform.right());
-			//this->n = this->transform.up();
 			break;
 		}
 	}

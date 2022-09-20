@@ -7,6 +7,7 @@ namespace mgd
 
 	class DiskEntity : public Entity {
 
+		//By default, this versor will always be the transform.up vector
 		Vector3 n;
 
 		float radius;
