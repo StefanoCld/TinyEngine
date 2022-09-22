@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
+    <ClInclude Include="cylinderEntity.h" />
     <ClInclude Include="diskEntity.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="planeEntity.h" />
@@ -154,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="cylinderEntity.cpp" />
     <ClCompile Include="diskEntity.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="main.cpp" />

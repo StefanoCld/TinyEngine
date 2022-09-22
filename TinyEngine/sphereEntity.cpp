@@ -23,6 +23,7 @@ namespace mgd
 	{
 		// the hitpos is (ray.p + k * ray.dir)
 		// for some k such that a*k^2 + b*k + c  = 0
+		
 		float a = 1;
 		float b = 2 * dot(ray.d, ray.p - transform.translate);
 		float c = (ray.p - transform.translate).squaredNorm() - radius * radius;

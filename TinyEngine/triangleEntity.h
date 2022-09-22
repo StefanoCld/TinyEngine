@@ -16,7 +16,7 @@ namespace mgd {
 		}
 
 	public:
-		bool bBillboardMode = true;
+		bool bBillboardMode = false;
 
 		TriangleEntity();
 

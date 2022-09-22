@@ -26,6 +26,7 @@ int main() {
 	
 	// external camera cache
 	Transform t = Transform();
+	t.translate = Vector3(0, 0, 0);
 
 	// caching variables
 	char key_press;

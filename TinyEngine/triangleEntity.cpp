@@ -3,7 +3,6 @@
 
 namespace mgd
 {
-	
 
 	TriangleEntity::TriangleEntity() : Entity()
 	{
@@ -25,7 +24,9 @@ namespace mgd
 
 	bool TriangleEntity::rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax)
 	{
-		//This triangle behaves like a billboard
+		//Result still glitchy, you can see it by placing multiple triangles in the scene
+		//(FIX THIS)
+
 		//Since L = 2H/srqt(3)..
 		float halfL = (height) / (std::sqrt(3));
 		Vector3 a = this->transform.translate - halfL *(this->transform.right());
@@ -34,7 +35,7 @@ namespace mgd
 
 		Vector3 _n;
 
-		//Billboard mode will calculate the normal using the "local" vertex positions
+		//Billboard mode will calculate the normals using the "local" vertex positions
 		if (bBillboardMode) 
 		{
 			Vector3 crossBACA = cross((b - a), (c - a));
@@ -56,7 +57,7 @@ namespace mgd
 		hitPos = ray.p + k * ray.d;
 		hitNorm = _n;
 
-		// Calculating if the point is inside the triangle, using the area-method
+		//Calculating if the point's inside the triangle, using the area-method
 		float A = area(a.x, a.y, b.x, b.y, c.x, c.y);
 
 		float A1 = area(hitPos.x, hitPos.y, b.x, b.y, c.x, c.y);

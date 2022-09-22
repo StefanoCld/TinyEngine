@@ -12,6 +12,7 @@
 #include "diskEntity.h"
 #include "planeEntity.h"
 #include "triangleEntity.h"
+#include "cylinderEntity.h"
 
 namespace mgd {
 
@@ -22,37 +23,37 @@ namespace mgd {
 
 		// Sandbox function, used to populate the scene
         void populate() {
-            for (int j = 0; j < 4; j++) 
+            
+            for (int i = 0; i < 4; i++) 
             {
-				Entity* someoneNew = new DiskEntity(2);
-                someoneNew->transform.translate = Vector3(0, -2, (9 * j) + 5);
+                Entity* someoneNew = new DiskEntity(2);
+				someoneNew->transform.translate = Vector3(0, -2, (i * 3) + 2);
 				obj.push_back(someoneNew);
             }
-            
-			for (int j = 0; j < 4; j++)
-			{
-				Entity* someoneNew = new SphereEntity(2);
-				someoneNew->transform.translate = Vector3(-4, 0, (9 * j) + 5);
-				obj.push_back(someoneNew);
-			}
-            
-            
-			for (int j = 0; j < 4; j++)
-			{
-				Entity* someoneNew = new SphereEntity(2);
-				someoneNew->transform.translate = Vector3(4, 0, (9 * j) + 5);
-				obj.push_back(someoneNew);
-			}
-            
-            
-            //Triangle draft (DEBUG)
-            Transform e;
-            e.translate = Vector3(0, -1, 40);
-            e.rotate = Quaternion::identity();
 
-			Entity* someoneNew = new TriangleEntity(e);
+            /*
+			for (int i = 0; i < 3; i++)
+			{
+                //Triangle draft (DEBUG)
+				Transform e;
+				e.translate = Vector3((i * 2) - 2, -1, 0);
+				e.rotate = Quaternion::identity();
+
+				Entity* someoneNew = new TriangleEntity(2, e);
+				obj.push_back(someoneNew);
+			}
+            */
+
+            /*
+			Entity* someoneNew = new DiskEntity(2);
+			someoneNew->transform.translate = Vector3(0, -2, 15);
 			obj.push_back(someoneNew);
-            
+
+			Transform e;
+			e.translate = Vector3(0, 0, 15);
+            Entity* cyl = new CylinderEntity(2, 2, e);
+            obj.push_back(cyl);
+            */
 		}
 
         std::vector<Entity*> toWorld() const {
