@@ -7,20 +7,34 @@ namespace mgd
 
 	TriangleEntity::TriangleEntity() : Entity()
 	{
-
+		height = 1;
 	}
 
-	TriangleEntity::TriangleEntity(Transform _t) : Entity(_t)
+	TriangleEntity::TriangleEntity(float _height) : Entity()
 	{
+		height = _height;
+	}
 
+	TriangleEntity::TriangleEntity(float _height, Transform _t) : Entity(_t)
+	{
+		height = _height;
 	}
 
 	bool TriangleEntity::rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax)
 	{
-		//This triangle behaves like a billboards
-		Vector3 a = this->transform.translate - 2*(this->transform.right());
-		Vector3 b = this->transform.translate + 2*(this->transform.up());
-		Vector3 c = this->transform.translate + 2*(this->transform.right());
+		//This triangle behaves like a billboard
+		//Since L = 2H/srqt(3)
+		float halfL = (height) / (std::sqrt(3));
+		Vector3 a = this->transform.translate - halfL *(this->transform.right());
+		Vector3 b = this->transform.translate + height *(this->transform.up());
+		Vector3 c = this->transform.translate + halfL *(this->transform.right());
+		
+		//This triangle behaves like a normal object (JOKING LOL IT'S A MESS)
+		/*
+		Vector3 a = this->transform.translate - 2 * (this->transform.right()) - this->transform.translate;
+		Vector3 b = this->transform.translate + 2 * (this->transform.up()) - this->transform.translate;
+		Vector3 c = this->transform.translate + 2 * (this->transform.right()) - this->transform.translate;
+		*/
 
 		Vector3 crossBACA = cross((b - a), (c - a));
 		Vector3 n = crossBACA / crossBACA.norm();

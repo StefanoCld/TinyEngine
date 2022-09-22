@@ -5,6 +5,8 @@ namespace mgd {
 
 	class TriangleEntity : public Entity {
 
+		float height;
+
 		inline float area(float x1, float y1, float x2, float y2, float x3, float y3)
 		{
 			return std::abs(((x1 * (y2 - y3)) + (x2 * (y3 - y1)) + (x3 * (y1 - y2))) / 2.0f);
@@ -13,7 +15,9 @@ namespace mgd {
 	public:
 		TriangleEntity();
 
-		TriangleEntity(Transform _t);
+		TriangleEntity(float _height);
+
+		TriangleEntity(float _height, Transform _t);
 
 		bool rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax) override;
 
