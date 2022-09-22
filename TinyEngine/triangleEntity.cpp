@@ -8,47 +8,53 @@ namespace mgd
 	TriangleEntity::TriangleEntity() : Entity()
 	{
 		height = 1;
+		n = -this->transform.forward();
 	}
 
-	TriangleEntity::TriangleEntity(float _height) : Entity()
+	TriangleEntity::TriangleEntity(float _h) : Entity()
 	{
-		height = _height;
+		height = _h;
+		n = -this->transform.forward();
 	}
 
-	TriangleEntity::TriangleEntity(float _height, Transform _t) : Entity(_t)
+	TriangleEntity::TriangleEntity(float _h, Transform _t) : Entity(_t)
 	{
-		height = _height;
+		height = _h;
+		n = -this->transform.forward();
 	}
 
 	bool TriangleEntity::rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax)
 	{
 		//This triangle behaves like a billboard
-		//Since L = 2H/srqt(3)
+		//Since L = 2H/srqt(3)..
 		float halfL = (height) / (std::sqrt(3));
 		Vector3 a = this->transform.translate - halfL *(this->transform.right());
 		Vector3 b = this->transform.translate + height *(this->transform.up());
 		Vector3 c = this->transform.translate + halfL *(this->transform.right());
-		
-		//This triangle behaves like a normal object (JOKING LOL IT'S A MESS)
-		/*
-		Vector3 a = this->transform.translate - 2 * (this->transform.right()) - this->transform.translate;
-		Vector3 b = this->transform.translate + 2 * (this->transform.up()) - this->transform.translate;
-		Vector3 c = this->transform.translate + 2 * (this->transform.right()) - this->transform.translate;
-		*/
 
-		Vector3 crossBACA = cross((b - a), (c - a));
-		Vector3 n = crossBACA / crossBACA.norm();
+		Vector3 _n;
+
+		//Billboard mode will calculate the normal using the "local" vertex positions
+		if (bBillboardMode) 
+		{
+			Vector3 crossBACA = cross((b - a), (c - a));
+			_n = crossBACA / crossBACA.norm();
+		}
+		else 
+		{
+			_n = this->n;
+		}
 		
-		float dn = dot(ray.d, n);
+		float dn = dot(ray.d, _n);
 		if (dn == 0) return false;
 
-		float k = dot(transform.translate - ray.p, n) / dn;
+		float k = dot(transform.translate - ray.p, _n) / dn;
 
 		if (k < 0) return false;
 		if (k > distMax) return false;
 		distMax = k;
 		hitPos = ray.p + k * ray.d;
-		hitNorm = n;
+		hitNorm = _n;
 
 		// Calculating if the point is inside the triangle, using the area-method
 		float A = area(a.x, a.y, b.x, b.y, c.x, c.y);
@@ -70,6 +76,8 @@ namespace mgd
 		TriangleEntity* p = new TriangleEntity();
 
 		p->transform.translate = a.transformPoint(this->transform.translate);
+		p->height = a.transformfloat(this->height);
+		p->n = a.transformVersor(this->n);
 
 		return p;
 	}
@@ -98,14 +106,17 @@ namespace mgd
 		{
 		case Axis::forward:
 			this->transform.rotate = this->transform.rotate * Quaternion::fromAngleAxis(rotAmount, this->transform.forward());
+			this->n = -this->transform.forward();
 			break;
 
 		case Axis::up:
 			this->transform.rotate = this->transform.rotate * Quaternion::fromAngleAxis(rotAmount, this->transform.up());
+			this->n = -this->transform.forward();
 			break;
 
 		case Axis::right:
 			this->transform.rotate = this->transform.rotate * Quaternion::fromAngleAxis(rotAmount, this->transform.right());
+			this->n = -this->transform.forward();
 			break;
 		}
 	}
