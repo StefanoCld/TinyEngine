@@ -24,12 +24,12 @@ namespace mgd
 
 	bool CylinderEntity::rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax)
 	{
-		//Broken: if the cylinder's moved on the y-axis, it disappears (FIX THIS)
-		Vector3 ba = (transform.translate + (this->height) * transform.up()) - transform.translate;
+
+		Vector3 ba = (transform.translate + ((this->height) * transform.up())) - transform.translate;
 		Vector3 pa = ray.p - transform.translate;
 
 		Vector3 v = ray.d - ((dot(ray.d, ba)) / ba.squaredNorm()) * (ba);
-		Vector3 w = (pa + ((dot(pa, ba)) / ba.squaredNorm()) * (ba));
+		Vector3 w = (pa - ((dot(pa, ba)) / ba.squaredNorm()) * (ba));
 
 		float a = v.squaredNorm();
 		float b = 2 * (dot(v, w));
@@ -50,15 +50,18 @@ namespace mgd
 
 		if (t < 0 || t > 1)
 			return false;
-		
+		/*
 		if (t == 1)
 			hitNorm = transform.up();
 		else if (t == 0)
 			hitNorm = -transform.up();
-		else
-			hitNorm = (hitPos - Vector3(transform.translate.x, hitPos.y, transform.translate.z)).normalized();
+		*/
+		else {
 
-		return true;
+			hitNorm = (hitPos - Vector3(transform.translate.x, hitPos.y, transform.translate.z)).normalized();
+			return true;
+		}
+		
 	}
 
 	CylinderEntity* CylinderEntity::apply(const Transform& a)

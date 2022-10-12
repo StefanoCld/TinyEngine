@@ -13,6 +13,7 @@
 #include "planeEntity.h"
 #include "triangleEntity.h"
 #include "cylinderEntity.h"
+#include "capsuleEntity.h"
 
 namespace mgd {
 
@@ -23,13 +24,6 @@ namespace mgd {
 
 		// Sandbox function, used to populate the scene
         void populate() {
-            
-            for (int i = 0; i < 4; i++) 
-            {
-                Entity* someoneNew = new DiskEntity(2);
-				someoneNew->transform.translate = Vector3(0, -2, (i * 3) + 2);
-				obj.push_back(someoneNew);
-            }
 
             /*
 			for (int i = 0; i < 3; i++)
@@ -42,17 +36,46 @@ namespace mgd {
 				Entity* someoneNew = new TriangleEntity(2, e);
 				obj.push_back(someoneNew);
 			}
-            */
+			*/
+
+			for (int i = 0; i < 8; i++)
+			{
+				Transform e4;
+				e4.translate = Vector3(0, -10 + i * 2, 12);
+				Entity* cy4 = new SphereEntity(1, e4);
+				obj.push_back(cy4);
+			}
+
+			for (int i = 0; i < 8; i++)
+			{
+				Transform e4;
+				e4.translate = Vector3(0, -10 + i * 2, -12);
+				Entity* cy4 = new SphereEntity(1, e4);
+				obj.push_back(cy4);
+			}
+
+			Transform e1;
+			e1.translate = Vector3(0, -3, 5);
+			Entity* cyl = new CylinderEntity(2, 2, e1);
+			obj.push_back(cyl);
 
             /*
-			Entity* someoneNew = new DiskEntity(2);
-			someoneNew->transform.translate = Vector3(0, -2, 15);
-			obj.push_back(someoneNew);
+			Entity* someoneNew2 = new DiskEntity(2);
+			someoneNew2->transform.translate = Vector3(4, -2, 5);
+			obj.push_back(someoneNew2);
+			Entity* someoneNew3 = new DiskEntity(2);
+			someoneNew3->transform.translate = Vector3(-4, -2, 5);
+			obj.push_back(someoneNew3);
 
-			Transform e;
-			e.translate = Vector3(0, 0, 15);
-            Entity* cyl = new CylinderEntity(2, 2, e);
-            obj.push_back(cyl);
+			Transform e3;
+			e3.translate = Vector3(4, 0, 5);
+			Entity* s3 = new SphereEntity(2, e3);
+			obj.push_back(s3); 
+
+            Transform e4;
+			e4.translate = Vector3(-4, 0, 5);
+			Entity* cy4 = new CylinderEntity(2, 2, e4);
+			obj.push_back(cy4);
             */
 		}
 
@@ -119,9 +142,11 @@ namespace mgd {
                 Vector3 hitNorm;
                 float distMax = 1000.0;
                 float diffuse = 0;
+                bool bHasHit = false;
 
-                for (Entity* s : entityVector) {
-					bool bHasHit = s->rayCast(c.primaryRay(x, y), hitPos, hitNorm, distMax);
+                for (Entity* s : entityVector) 
+                {
+					bHasHit = s->rayCast(c.primaryRay(x, y), hitPos, hitNorm, distMax);
                     if(bHasHit)
                         diffuse = (s->Lighting(hitNorm, watcherPos));
                 }

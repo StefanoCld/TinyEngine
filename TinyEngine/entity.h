@@ -5,7 +5,6 @@
 
 namespace mgd {
 
-
 	class Entity {
 
 	public:
@@ -31,7 +30,7 @@ namespace mgd {
 		//..and rotating the object.
 		virtual void Rotate(Axis axis, float rotAmount) = 0;
 		
-		//Also, if their lighting-behaviour differsf from the standard one, they will implement their own
+		//Also, if their lighting-behaviour differs from the standard one, they will implement their own
 		virtual float Lighting(Vector3 hitNorm, Vector3 watcherPos);
 
 		//Return true, if the the object can be controlled (moved and rotated) by the player
