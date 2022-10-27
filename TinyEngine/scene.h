@@ -24,60 +24,71 @@ namespace mgd {
 
 		// Sandbox function, used to populate the scene
         void populate() {
+            templeScenePop();
+		}
+
+        void templeScenePop() {
+
+            Entity* someoneNew = new DiskEntity(15);
+            someoneNew->transform.translate = Vector3(0, -2, 12);
+            obj.push_back(someoneNew);
 
             /*
+            for (int i = 0; i < 3; i++)
+            {
+                //Triangle draft (DEBUG)
+                Transform e;
+                e.translate = Vector3((i * 2) - 2, -1, 0);
+                e.rotate = Quaternion::identity();
+
+                Entity* someoneNew = new TriangleEntity(2, e);
+                obj.push_back(someoneNew);
+            }
+            */
+            
+            for (int i = 0; i < 3; i++)
+            {
+				Transform e;
+				e.translate = Vector3(-6, -2, 5 + i * 2);
+				Entity* cy = new CylinderEntity(2, 5, e);
+				obj.push_back(cy);
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+				Transform e;
+				e.translate = Vector3(6, -2, 5 + i*2);
+				Entity* cy = new CylinderEntity(2, 5, e);
+				obj.push_back(cy);
+            }
+
 			for (int i = 0; i < 3; i++)
 			{
-                //Triangle draft (DEBUG)
 				Transform e;
-				e.translate = Vector3((i * 2) - 2, -1, 0);
-				e.rotate = Quaternion::identity();
-
-				Entity* someoneNew = new TriangleEntity(2, e);
-				obj.push_back(someoneNew);
+				e.translate = Vector3(-6, -2, 15 + i * 2);
+				Entity* cy = new CylinderEntity(2, 5, e);
+				obj.push_back(cy);
 			}
-			*/
 
-			for (int i = 0; i < 8; i++)
+			for (int i = 0; i < 3; i++)
 			{
-				Transform e4;
-				e4.translate = Vector3(0, -10 + i * 2, 12);
-				Entity* cy4 = new SphereEntity(1, e4);
-				obj.push_back(cy4);
+				Transform e;
+				e.translate = Vector3(6, -2, 15 + i * 2);
+				Entity* cy = new CylinderEntity(2, 5, e);
+				obj.push_back(cy);
 			}
 
-			for (int i = 0; i < 8; i++)
-			{
-				Transform e4;
-				e4.translate = Vector3(0, -10 + i * 2, -12);
-				Entity* cy4 = new SphereEntity(1, e4);
-				obj.push_back(cy4);
-			}
+			Entity* someoneNew1 = new SphereEntity(1.5f);
+			someoneNew1->transform.translate = Vector3(0, 0, 12);
+			obj.push_back(someoneNew1);
 
 			Transform e1;
-			e1.translate = Vector3(0, -3, 5);
-			Entity* cyl = new CylinderEntity(2, 2, e1);
-			obj.push_back(cyl);
+			e1.translate = Vector3(0, 1.5f, 12);
+			e1.rotate = Quaternion::identity();
 
-            /*
-			Entity* someoneNew2 = new DiskEntity(2);
-			someoneNew2->transform.translate = Vector3(4, -2, 5);
+			Entity* someoneNew2 = new TriangleEntity(2, e1);
 			obj.push_back(someoneNew2);
-			Entity* someoneNew3 = new DiskEntity(2);
-			someoneNew3->transform.translate = Vector3(-4, -2, 5);
-			obj.push_back(someoneNew3);
-
-			Transform e3;
-			e3.translate = Vector3(4, 0, 5);
-			Entity* s3 = new SphereEntity(2, e3);
-			obj.push_back(s3); 
-
-            Transform e4;
-			e4.translate = Vector3(-4, 0, 5);
-			Entity* cy4 = new CylinderEntity(2, 2, e4);
-			obj.push_back(cy4);
-            */
-		}
+        }
 
         std::vector<Entity*> toWorld() const {
             std::vector<Entity*> res;

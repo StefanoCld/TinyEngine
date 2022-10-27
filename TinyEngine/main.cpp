@@ -21,6 +21,11 @@ int main() {
 	unsigned int objNumber = s.obj.size();
 	unsigned int index = 0;
 
+	if (objNumber <= 0) {
+		std::cout << "The scene is empty!" << std::endl;
+		return -1;
+	}
+
 	// game object reference
 	Entity* currentEntity = (s.obj.at(index));
 	
