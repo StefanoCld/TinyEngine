@@ -54,9 +54,6 @@
     <ClInclude Include="cylinderEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="capsuleEntity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -90,9 +87,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cylinderEntity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="capsuleEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

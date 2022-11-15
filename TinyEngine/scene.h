@@ -13,7 +13,6 @@
 #include "planeEntity.h"
 #include "triangleEntity.h"
 #include "cylinderEntity.h"
-#include "capsuleEntity.h"
 
 namespace mgd {
 
@@ -24,27 +23,14 @@ namespace mgd {
 
 		// Sandbox function, used to populate the scene
         void populate() {
-            templeScenePop();
+            templeScenePopulate();
 		}
 
-        void templeScenePop() {
+        void templeScenePopulate() {
 
             Entity* someoneNew = new DiskEntity(15);
             someoneNew->transform.translate = Vector3(0, -2, 12);
             obj.push_back(someoneNew);
-
-            /*
-            for (int i = 0; i < 3; i++)
-            {
-                //Triangle draft (DEBUG)
-                Transform e;
-                e.translate = Vector3((i * 2) - 2, -1, 0);
-                e.rotate = Quaternion::identity();
-
-                Entity* someoneNew = new TriangleEntity(2, e);
-                obj.push_back(someoneNew);
-            }
-            */
             
             for (int i = 0; i < 3; i++)
             {
@@ -145,7 +131,7 @@ namespace mgd {
         Camera c(2.0, 45, 45);
         std::string screenBuffer; // a string to get ready and print all at once
 
-        //system("cls"); - not used at the moment, creates an unpleasant glitch
+        //system("cls"); // not used at the moment, creates an unpleasant glitch
 
         for (int y = 0; y < c.pixelDimY; y++) {
             for (int x = 0; x < c.pixelDimX; x++) {
