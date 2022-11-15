@@ -24,8 +24,7 @@ namespace mgd
 
 	bool TriangleEntity::rayCast(Ray ray, Vector3& hitPos, Vector3& hitNorm, float& distMax)
 	{
-		//Result still glitchy, you can see it by placing multiple triangles in the scene
-		//(FIX THIS)
+		//Result is still glitchy, you can see it by placing multiple triangles in the scene
 
 		//Since L = 2H/srqt(3)..
 		float halfL = (height) / (std::sqrt(3));

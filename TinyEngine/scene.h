@@ -27,11 +27,15 @@ namespace mgd {
 		}
 
         void templeScenePopulate() {
+            // Example scene
 
+            // Disk floor
             Entity* someoneNew = new DiskEntity(15);
             someoneNew->transform.translate = Vector3(0, -2, 12);
             obj.push_back(someoneNew);
             
+            // Cylinders!
+            /*
             for (int i = 0; i < 3; i++)
             {
 				Transform e;
@@ -63,17 +67,47 @@ namespace mgd {
 				Entity* cy = new CylinderEntity(2, 5, e);
 				obj.push_back(cy);
 			}
-
-			Entity* someoneNew1 = new SphereEntity(1.5f);
-			someoneNew1->transform.translate = Vector3(0, 0, 12);
-			obj.push_back(someoneNew1);
-
+			*/
+            
 			Transform e1;
-			e1.translate = Vector3(0, 1.5f, 12);
-			e1.rotate = Quaternion::identity();
+			e1.translate = Vector3(-6, -2, 5);
+			Entity* cy1 = new CylinderEntity(2, 5, e1);
+			obj.push_back(cy1);
 
-			Entity* someoneNew2 = new TriangleEntity(2, e1);
-			obj.push_back(someoneNew2);
+			Transform e2;
+			e2.translate = Vector3(6, -2, 5);
+			Entity* cy2 = new CylinderEntity(2, 5, e2);
+			obj.push_back(cy2);
+
+			Transform e3;
+			e3.translate = Vector3(-6, -2, 15);
+			Entity* cy3 = new CylinderEntity(2, 5, e3);
+			obj.push_back(cy3);
+
+		    Transform e4;
+			e4.translate = Vector3(6, -2, 15);
+			Entity* cy4 = new CylinderEntity(2, 5, e4);
+			obj.push_back(cy4);
+
+            // Spheres (can be moved!)
+			Entity* sphere1 = new SphereEntity(1.5f);
+            sphere1->transform.translate = Vector3(0, 0, 12);
+			obj.push_back(sphere1);
+
+			Entity* sphere2 = new SphereEntity(5.f);
+            sphere2->transform.translate = Vector3(0, 0, 30);
+			obj.push_back(sphere2);
+
+            // floating Triangles!
+			for (int i = 0; i < 3; i++)
+			{
+				Transform e;
+				e.translate = Vector3(-3 + i*3, 3.f, 12);
+				e.rotate = Quaternion::identity();
+
+				Entity* triangle = new TriangleEntity(2, e);
+				obj.push_back(triangle);
+			}
         }
 
         std::vector<Entity*> toWorld() const {
@@ -128,10 +162,8 @@ namespace mgd {
     }
 
     void rayCasting(const std::vector<Entity*> entityVector) {
-        Camera c(2.0, 45, 45);
+        Camera c(2.0, 44, 44);
         std::string screenBuffer; // a string to get ready and print all at once
-
-        //system("cls"); // not used at the moment, creates an unpleasant glitch
 
         for (int y = 0; y < c.pixelDimY; y++) {
             for (int x = 0; x < c.pixelDimX; x++) {
