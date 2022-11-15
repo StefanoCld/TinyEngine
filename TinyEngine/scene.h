@@ -34,41 +34,7 @@ namespace mgd {
             someoneNew->transform.translate = Vector3(0, -2, 12);
             obj.push_back(someoneNew);
             
-            // Cylinders!
-            /*
-            for (int i = 0; i < 3; i++)
-            {
-				Transform e;
-				e.translate = Vector3(-6, -2, 5 + i * 2);
-				Entity* cy = new CylinderEntity(2, 5, e);
-				obj.push_back(cy);
-            }
-
-            for (int i = 0; i < 3; i++)
-            {
-				Transform e;
-				e.translate = Vector3(6, -2, 5 + i*2);
-				Entity* cy = new CylinderEntity(2, 5, e);
-				obj.push_back(cy);
-            }
-
-			for (int i = 0; i < 3; i++)
-			{
-				Transform e;
-				e.translate = Vector3(-6, -2, 15 + i * 2);
-				Entity* cy = new CylinderEntity(2, 5, e);
-				obj.push_back(cy);
-			}
-
-			for (int i = 0; i < 3; i++)
-			{
-				Transform e;
-				e.translate = Vector3(6, -2, 15 + i * 2);
-				Entity* cy = new CylinderEntity(2, 5, e);
-				obj.push_back(cy);
-			}
-			*/
-            
+            // Cylinders! (Temple's colmuns)
 			Transform e1;
 			e1.translate = Vector3(-6, -2, 5);
 			Entity* cy1 = new CylinderEntity(2, 5, e1);
