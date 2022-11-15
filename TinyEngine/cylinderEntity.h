@@ -1,7 +1,8 @@
 #pragma once
 #include "entity.h"
 
-namespace mgd {
+namespace mgd 
+{
 
 	class CylinderEntity : public Entity {
 

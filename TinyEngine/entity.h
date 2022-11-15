@@ -3,7 +3,8 @@
 #include "shapes3d.h"
 #include "utils.h"
 
-namespace mgd {
+namespace mgd 
+{
 
 	class Entity {
 

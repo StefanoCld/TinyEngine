@@ -1,6 +1,7 @@
 #pragma once
 
-enum class Axis {
+enum class Axis 
+{
 	forward,
 	right,
 	up

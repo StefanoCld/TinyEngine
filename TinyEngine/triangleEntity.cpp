@@ -68,7 +68,7 @@ namespace mgd
 		float A123 = (A1 + A2 + A3);
 
 		// Check if sum of A1, A2 and A3 is same as A
-		return (std::abs(A - A123) < 0.05f);
+		return (std::abs(A - A123) < 0.005f);
 	}
 
 	TriangleEntity* TriangleEntity::apply(const Transform& a)

@@ -196,7 +196,8 @@ int main() {
 				for (Entity* e : tempVec)
 					delete e;
 
-				std::cout << "Camera mode: External" << std::endl;
+				std::cout << "Camera mode: External";
+				//std::cout << "Camera mode: External" << std::endl;
 			}
 
 			// s
@@ -214,7 +215,8 @@ int main() {
 				for (Entity* e : tempVec)
 					delete e;
 
-				std::cout << "Camera mode: External" << std::endl;
+				std::cout << "Camera mode: External";
+				//std::cout << "Camera mode: External" << std::endl;
 			}
 
 			// a
@@ -232,7 +234,8 @@ int main() {
 				for (Entity* e : tempVec)
 					delete e;
 
-				std::cout << "Camera mode: External" << std::endl;
+				std::cout << "Camera mode: External";
+				//std::cout << "Camera mode: External" << std::endl;
 			}
 
 			// d
@@ -250,7 +253,8 @@ int main() {
 				for (Entity* e : tempVec)
 					delete e;
 
-				std::cout << "Camera mode: External" << std::endl;
+				std::cout << "Camera mode: External";
+				//std::cout << "Camera mode: External" << std::endl;
 			}
 
 			// g - Change to GameObject

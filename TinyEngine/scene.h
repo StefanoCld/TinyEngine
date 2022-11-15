@@ -14,7 +14,8 @@
 #include "triangleEntity.h"
 #include "cylinderEntity.h"
 
-namespace mgd {
+namespace mgd 
+{
 
     class Scene {
     public:
@@ -34,7 +35,7 @@ namespace mgd {
             someoneNew->transform.translate = Vector3(0, -2, 12);
             obj.push_back(someoneNew);
             
-            // Cylinders! (Temple's colmuns)
+            // Cylinders! (Temple's columns)
 			Transform e1;
 			e1.translate = Vector3(-6, -2, 5);
 			Entity* cy1 = new CylinderEntity(2, 5, e1);
@@ -61,7 +62,7 @@ namespace mgd {
 			obj.push_back(sphere1);
 
 			Entity* sphere2 = new SphereEntity(5.f);
-            sphere2->transform.translate = Vector3(0, 0, 30);
+            sphere2->transform.translate = Vector3(0, 10, 30);
 			obj.push_back(sphere2);
 
             // floating Triangles!
@@ -128,7 +129,7 @@ namespace mgd {
     }
 
     void rayCasting(const std::vector<Entity*> entityVector) {
-        Camera c(2.0, 44, 44);
+        Camera c(2.0, 52, 52);
         std::string screenBuffer; // a string to get ready and print all at once
 
         for (int y = 0; y < c.pixelDimY; y++) {

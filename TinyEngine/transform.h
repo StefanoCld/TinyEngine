@@ -2,9 +2,12 @@
 #include "vector3.h"
 #include "quaternion.h"
 
-namespace mgd {
+namespace mgd 
+{
 
-	class Transform {
+	class Transform 
+	{
+
 	public:
 		Transform();
 

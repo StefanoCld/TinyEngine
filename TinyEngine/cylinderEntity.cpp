@@ -56,8 +56,8 @@ namespace mgd
 		else if (t == 0)
 			hitNorm = -transform.up();
 		*/
-		else {
-
+		else
+		{
 			hitNorm = (hitPos - Vector3(transform.translate.x, hitPos.y, transform.translate.z)).normalized();
 			return true;
 		}

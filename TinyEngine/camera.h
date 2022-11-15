@@ -14,5 +14,4 @@ namespace mgd
 
 		Ray primaryRay(int pixelX, int pixelY);
 	};
-
 }

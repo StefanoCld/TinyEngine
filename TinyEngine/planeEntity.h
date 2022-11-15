@@ -1,9 +1,11 @@
 #pragma once
 #include "entity.h"
 
-namespace mgd {
+namespace mgd 
+{
 
-	class PlaneEntity : public Entity {
+	class PlaneEntity : public Entity 
+	{
 
 		//By default, this versor will always be the transform.up vector
 		Vector3 n;

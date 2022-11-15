@@ -3,7 +3,8 @@
 #include <assert.h>
 #include <cmath>
 
-namespace mgd {
+namespace mgd 
+{
 
 	struct Vector3 {
 		float x, y, z;
