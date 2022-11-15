@@ -13,7 +13,7 @@ namespace mgd
 		transform = _t;
 	}
 
-	float Entity::Lighting(Vector3 hitNorm, Vector3 watcherPos)
+	float Entity::Lighting(Vector3 hitNorm)
 	{
 		Vector3 lightDir = Vector3(1, 2, -2).normalized();
 

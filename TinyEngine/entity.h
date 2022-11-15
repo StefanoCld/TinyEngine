@@ -31,7 +31,7 @@ namespace mgd {
 		virtual void Rotate(Axis axis, float rotAmount) = 0;
 		
 		//Also, if their lighting-behaviour differs from the standard one, they will implement their own
-		virtual float Lighting(Vector3 hitNorm, Vector3 watcherPos);
+		virtual float Lighting(Vector3 hitNorm);
 
 		//Return true, if the the object can be controlled (moved and rotated) by the player
 		virtual bool CanBePossessed() const = 0;

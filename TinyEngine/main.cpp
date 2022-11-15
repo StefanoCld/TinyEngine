@@ -31,7 +31,7 @@ int main() {
 	
 	// external camera cache
 	Transform t = Transform();
-	t.translate = Vector3(0, 0, 0);
+	//t.translate = Vector3(0, 0, 0);
 
 	// caching variables
 	char key_press;
@@ -70,8 +70,7 @@ int main() {
 				//tempVec = s.toView(*currentTransform);
 				tempVec = s.toView(currentEntity->transform);
 
-				//rayCasting(tempVec);
-				rayCasting(tempVec, currentEntity->transform.translate);
+				rayCasting(tempVec);
 
 				for (Entity* e : tempVec)
 					delete e;
@@ -88,8 +87,7 @@ int main() {
 				//tempVec = s.toView(*currentTransform);
 				tempVec = s.toView(currentEntity->transform);
 
-				//rayCasting(tempVec);
-				rayCasting(tempVec, currentEntity->transform.translate);
+				rayCasting(tempVec);
 
 				for (Entity* e : tempVec)
 					delete e;
@@ -99,6 +97,7 @@ int main() {
 			else if (ascii_value == 97) {
 				currentEntity->Rotate(Axis::up, -deltaRot);
 
+				
 				//prevents memory leak
 				std::vector<Entity*> tempVec;
 				tempVec.clear();
@@ -106,8 +105,7 @@ int main() {
 				//tempVec = s.toView(*currentTransform);
 				tempVec = s.toView(currentEntity->transform);
 
-				//rayCasting(tempVec);
-				rayCasting(tempVec, currentEntity->transform.translate);
+				rayCasting(tempVec);
 
 				for (Entity* e : tempVec)
 					delete e;
@@ -124,7 +122,7 @@ int main() {
 				//tempVec = s.toView(*currentTransform);
 				tempVec = s.toView(currentEntity->transform);
 
-				rayCasting(tempVec, currentEntity->transform.translate);
+				rayCasting(tempVec);
 
 				for (Entity* e : tempVec)
 					delete e;
@@ -133,7 +131,7 @@ int main() {
 			// g - Change to External Camera
 			else if (ascii_value == 103) {
 				isFirstPerson = false;
-				rayCasting(s.toView(t), t.translate);
+				rayCasting(s.toView(t));
 			}
 
 			// n - Select next Game Object
@@ -153,7 +151,7 @@ int main() {
 					currentEntity = (s.obj.at(index));
 				}
 				
-				rayCasting(s.toView(currentEntity->transform), currentEntity->transform.translate);
+				rayCasting(s.toView(currentEntity->transform));
 			}
 			
 		}
@@ -174,11 +172,11 @@ int main() {
 				tempVec.clear();
 				tempVec = s.toView(t);
 
-				//rayCasting(tempVec);
-				rayCasting(tempVec, t.translate);
+				rayCasting(tempVec);
 
 				for (Entity* e : tempVec)
 					delete e;
+				
 			}
 
 			// s
@@ -191,7 +189,7 @@ int main() {
 				tempVec = s.toView(t);
 
 				//rayCasting(tempVec);
-				rayCasting(tempVec, t.translate);
+				rayCasting(tempVec);
 
 				for (Entity* e : tempVec)
 					delete e;
@@ -206,8 +204,7 @@ int main() {
 				tempVec.clear();
 				tempVec = s.toView(t);
 
-				//rayCasting(tempVec);
-				rayCasting(tempVec, t.translate);
+				rayCasting(tempVec);
 
 				for (Entity* e : tempVec)
 					delete e;
@@ -222,8 +219,7 @@ int main() {
 				tempVec.clear();
 				tempVec = s.toView(t);
 
-				//rayCasting(tempVec);
-				rayCasting(tempVec, t.translate);
+				rayCasting(tempVec);
 
 				for (Entity* e : tempVec)
 					delete e;
@@ -232,8 +228,9 @@ int main() {
 			// g - Change to GameObject
 			else if (ascii_value == 103) {
 				isFirstPerson = true;
+
 				//rayCasting(s.toView(*currentTransform));
-				// 
+
 				currentEntity = (s.obj.at(index));
 
 				while (!(currentEntity->CanBePossessed()))
@@ -245,7 +242,7 @@ int main() {
 					currentEntity = (s.obj.at(index));
 				}
 
-				rayCasting(s.toView(currentEntity->transform), currentEntity->transform.translate);
+				rayCasting(s.toView(currentEntity->transform));
 			}
 		}
 	}
@@ -259,7 +256,7 @@ void Render(const Scene& s, const Transform* const currentTransform)
 
 	tempVec = s.toView(*currentTransform);
 
-	//rayCasting(tempVec);
+	rayCasting(tempVec);
 
 	for (Entity* e : tempVec)
 		delete e;

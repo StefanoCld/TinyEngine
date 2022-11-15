@@ -127,7 +127,7 @@ namespace mgd {
         return intensityToCstr(diffuse);
     }
 
-    void rayCasting(const std::vector<Entity*> entityVector, Vector3 watcherPos) {
+    void rayCasting(const std::vector<Entity*> entityVector) {
         Camera c(2.0, 45, 45);
         std::string screenBuffer; // a string to get ready and print all at once
 
@@ -145,7 +145,7 @@ namespace mgd {
                 {
 					bHasHit = s->rayCast(c.primaryRay(x, y), hitPos, hitNorm, distMax);
                     if(bHasHit)
-                        diffuse = (s->Lighting(hitNorm, watcherPos));
+                        diffuse = (s->Lighting(hitNorm));
                 }
 
 				//screenBuffer += lighting(hitNorm);

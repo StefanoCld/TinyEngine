@@ -111,9 +111,9 @@ namespace mgd
 		}
 	}
 
-	float CylinderEntity::Lighting(Vector3 hitNorm, Vector3 watcherPos)
+	float CylinderEntity::Lighting(Vector3 hitNorm)
 	{
-		return Entity::Lighting(hitNorm, watcherPos);
+		return Entity::Lighting(hitNorm);
 	}
 
 }

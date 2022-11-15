@@ -122,8 +122,8 @@ namespace mgd
 		}
 	}
 
-	float TriangleEntity::Lighting(Vector3 hitNorm, Vector3 watcherPos)
+	float TriangleEntity::Lighting(Vector3 hitNorm)
 	{
-		return Entity::Lighting(hitNorm, watcherPos);
+		return Entity::Lighting(hitNorm);
 	}
 }

@@ -94,9 +94,9 @@ namespace mgd
 
 	}
 
-	float DiskEntity::Lighting(Vector3 hitNorm, Vector3 watcherPos)
+	float DiskEntity::Lighting(Vector3 hitNorm)
 	{
-		return Entity::Lighting(hitNorm, watcherPos);
+		return Entity::Lighting(hitNorm);
 	}
 
 }
